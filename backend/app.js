@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const port = process.env.PORT || 8000;
 
 // get method
 app.get("/", (req, res) => {
@@ -12,6 +13,6 @@ app.post("/write", (req, res) => {
 });
 
 // server start
-app.listen(8000, () => {
-  console.log("start express server");
+app.listen(port, () => {
+  console.log(`server is listening at localhost:${port}`);
 });
