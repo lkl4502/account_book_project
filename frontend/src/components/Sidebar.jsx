@@ -5,11 +5,12 @@ import SidebarItem from "./SidebarItem";
 
 const Side = styled.div`
   display: flex;
-  border-right: 1px solid #e0e0e0;
+  background-color: #333;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 20%;
+  height: 100vh;
 `;
 
 const Menu = styled.div`
@@ -17,6 +18,8 @@ const Menu = styled.div`
   width: 200px;
   display: flex;
   flex-direction: column;
+  font-size: 16px;
+  color: #969696;
 `;
 
 function Sidebar() {
