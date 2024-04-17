@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import SidebarItem from "./SidebarItem";
+import Divider from "./Divider";
 
 const Side = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const Menu = styled.div`
   width: 200px;
   display: flex;
   flex-direction: column;
+  text-align: left;
   font-size: 16px;
   color: #969696;
 `;
@@ -34,6 +36,7 @@ function Sidebar() {
   return (
     <Side>
       <Menu>
+        <Divider />
         {menus.map((menu, index) => {
           return (
             <NavLink
@@ -47,6 +50,7 @@ function Sidebar() {
             </NavLink>
           );
         })}
+        <Divider />
       </Menu>
     </Side>
   );
