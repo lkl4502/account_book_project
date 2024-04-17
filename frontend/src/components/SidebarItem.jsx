@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
+const P = styled.p`
+  font-size: 12px;
+  font-weight: 600;
+  color: #969696;
+`;
+
 function SidebarItem(props) {
   return (
     <div>
-      <p>{props.menu.name}</p>
+      <P>{props.menu.name}</P>
     </div>
   );
 }
