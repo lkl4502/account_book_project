@@ -3,7 +3,7 @@ import Text from "../components/Text";
 
 function SpendingWrite() {
   return (
-    <div>
+    <>
       <Text size={"35px"} color={"#333"} bold={"600"}>
         지출 기입
       </Text>
@@ -21,7 +21,7 @@ function SpendingWrite() {
         있도록하여 올바른 소비계획을 세울 수 있도록 도움을 줄 수 있는 웹
         서비스를 만드는 것입니다.
       </Text>
-    </div>
+    </>
   );
 }
 

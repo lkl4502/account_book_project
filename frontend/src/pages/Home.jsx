@@ -3,7 +3,7 @@ import Text from "../components/Text";
 
 function Home() {
   return (
-    <div>
+    <>
       <Text type={"title"} margin={"0px 0px 15px 0px"}>
         홈
       </Text>
@@ -21,7 +21,7 @@ function Home() {
         있도록하여 올바른 소비계획을 세울 수 있도록 도움을 줄 수 있는 웹
         서비스를 만드는 것입니다.
       </Text>
-    </div>
+    </>
   );
 }
 

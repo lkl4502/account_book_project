@@ -8,10 +8,12 @@ const Side = styled.div`
   display: flex;
   background-color: #333;
   flex-direction: column;
-  align-items: top;
-  justify-content: top;
+  align-items: flex-start;
+  justify-content: flex-start;
   width: 15%;
   height: 100%;
+  flex-basis: 15%;
+  flex-shrink: 0;
 `;
 
 const Menu = styled.div`
@@ -36,6 +38,7 @@ const NavStyle = styled(NavLink)`
 `;
 
 const MainP = styled.p`
+  width: 100%;
   padding-top: 1.5rem;
   font-weight: 600;
   color: #f0f0f0;
