@@ -1,26 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import Text from "../components/Text";
+import Divider from "../components/Divider";
+import CustomCalendar from "../components/CustomCalendar";
+import "../App.css";
+import InputBox from "../components/InputBox";
+import CustomButton from "../components/CustomButton";
 
 function SpendingWrite() {
+  const [date, setDate] = useState(new Date());
+  const [content, setContent] = useState("");
+  const [sum, setSum] = useState();
+  const [memo, setMemo] = useState("");
+
+  const sumHandleChange = (e) => {
+    if (e > 0) {
+      if (e.length > 8) {
+        if (e > 99999999) {
+          alert("최대 99,999,999원 까지 입력 가능");
+        }
+        e = e.slice(0, 8);
+      }
+    } else {
+      e = 1;
+      alert("0원 이하의 값은 입력할 수 없습니다.");
+    }
+    setSum(e);
+  };
+
   return (
     <>
-      <Text size={"35px"} color={"#333"} bold={"600"}>
-        지출 기입
+      <Text type={"title"} margin={"0px 0px 15px 0px"}>
+        Spending Write
       </Text>
-      <Text size={"16px"} color={"#333"} bold={"300"}>
-        프로젝트의 주제로 정한 개인재무관리 서비스는 서비스를 사용하는 사용자의
-        지출 및 수입 내역을 수집하여 한 눈에 확인할 수 있도록 하여 사용자로
-        하여금 올바른 소비 계획을 세울 수 있도록 돕는 서비스입니다.
+      <Text border={false} margin={"0px 0px 20px 0px"}>
+        직접 입력하고 싶은 지출에 대해서 작성하고 등록 버튼을 통해서 등록하시면
+        됩니다.
       </Text>
-      <Text size={"35px"} color={"#333"} bold={"600"}>
-        목적
+
+      <Divider margin={"0px 0px 15px 0px"} width={"75%"} />
+
+      <Text border={false} margin={"0px 0px 10px 0px"}>
+        날짜
       </Text>
-      <Text size={"16px"} color={"#333"} bold={"300"}>
-        서비스를 사용하는 사용자가 직접 지출 및 수입 내역을 입력하거나, 계좌
-        연동시 자동으로 일정 기간의 거래 내역을 가져와 한 눈에 확인할 수
-        있도록하여 올바른 소비계획을 세울 수 있도록 도움을 줄 수 있는 웹
-        서비스를 만드는 것입니다.
+      <CustomCalendar value={date} onChange={setDate} />
+
+      <Text border={false} margin={"30px 0px 10px 0px"}>
+        거래명
       </Text>
+
+      <InputBox
+        type={"text"}
+        value={content}
+        setValue={setContent}
+        placeholder={"거래명을 입력해주세요."}
+      />
+
+      <Text border={false} margin={"30px 0px 10px 0px"}>
+        금액
+      </Text>
+
+      <InputBox
+        type={"number"}
+        value={sum}
+        setValue={sumHandleChange}
+        placeholder={"금액을 입력해주세요."}
+        minValue={1}
+        maxValue={99999999}
+        step={10}
+      />
+
+      <Text border={false} margin={"30px 0px 10px 0px"}>
+        메모
+      </Text>
+
+      <InputBox
+        type={"text"}
+        value={memo}
+        setValue={setMemo}
+        placeholder={"메모 할 것이 있다면 입력해주세요."}
+      />
+
+      <CustomButton>등록</CustomButton>
     </>
   );
 }

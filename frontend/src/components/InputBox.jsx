@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const CustomInput = styled.input`
-  width: 100%;
+  width: 70%;
   height: auto;
   border: 1px solid gray;
   border-radius: 10px;

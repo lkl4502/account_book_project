@@ -37,7 +37,7 @@ function IncomeWrite() {
         됩니다.
       </Text>
 
-      <Divider margin={"0px 0px 15px 0px"} />
+      <Divider margin={"0px 0px 15px 0px"} width={"75%"} />
 
       <Text border={false} margin={"0px 0px 10px 0px"}>
         날짜
