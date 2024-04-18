@@ -14,8 +14,8 @@ const ContentP = styled(TitleP)`
   font-weight: 300;
   padding: 10px 10px;
   width: fit-content;
-  border: ${(props) => (props.border ? "1px solid #333" : "none")};
-  border-radius: ${(props) => (props.border ? "20px" : "none")};
+  border: ${(props) => (props.border ? "0.8px solid #333" : "none")};
+  border-radius: ${(props) => (props.border ? "10px" : "none")};
 `;
 
 function Text({ type, margin, border, children }) {

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Text from "../components/Text";
 import Divider from "../components/Divider";
 import CustomCalendar from "../components/CustomCalendar";
 import "../App.css";
 
 function IncomeWrite() {
+  const [value, setValue] = useState(new Date());
+
   return (
     <>
       <Text type={"title"} margin={"0px 0px 15px 0px"}>
@@ -18,7 +20,7 @@ function IncomeWrite() {
       <Divider margin={"0px 0px 15px 0px"} />
 
       <Text margin={"0px 0px 10px 0px"}>날짜</Text>
-      <CustomCalendar />
+      <CustomCalendar value={value} onChange={setValue} />
     </>
   );
 }
