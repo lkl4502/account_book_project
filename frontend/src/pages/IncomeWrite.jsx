@@ -3,9 +3,11 @@ import Text from "../components/Text";
 import Divider from "../components/Divider";
 import CustomCalendar from "../components/CustomCalendar";
 import "../App.css";
+import InputBox from "../components/InputBox";
 
 function IncomeWrite() {
-  const [value, setValue] = useState(new Date());
+  const [date, setDate] = useState(new Date());
+  const [content, setContent] = useState("");
 
   return (
     <>
@@ -19,8 +21,21 @@ function IncomeWrite() {
 
       <Divider margin={"0px 0px 15px 0px"} />
 
-      <Text margin={"0px 0px 10px 0px"}>날짜</Text>
-      <CustomCalendar value={value} onChange={setValue} />
+      <Text border={false} margin={"0px 0px 10px 0px"}>
+        날짜
+      </Text>
+      <CustomCalendar value={date} onChange={setDate} />
+
+      <Text border={false} margin={"50px 0px 10px 0px"}>
+        거래명
+      </Text>
+
+      <InputBox
+        type={"text"}
+        value={content}
+        setValue={setContent}
+        placeholder={"테스트 한다."}
+      />
     </>
   );
 }
