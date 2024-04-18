@@ -1,16 +1,16 @@
 import React from "react";
 import Text from "../components/Text";
+import Divider from "../components/Divider";
 
 function IncomeWrite() {
   return (
     <div>
-      <Text size={"35px"} color={"#333"} bold={"600"}>
-        수입 작성
+      <Text type={"title"} margin={"0px 0px 15px 0px"}>
+        Income Write
       </Text>
-      <Text size={"16px"} color={"#333"} bold={"300"}>
-        프로젝트의 주제로 정한 개인재무관리 서비스는 서비스를 사용하는 사용자의
-        지출 및 수입 내역을 수집하여 한 눈에 확인할 수 있도록 하여 사용자로
-        하여금 올바른 소비 계획을 세울 수 있도록 돕는 서비스입니다.
+      <Text border={false} margin={"0px 0px 20px 0px"}>
+        직접 입력하고 싶은 수입에 대해서 작성하고 등록 버튼을 통해서 등록하시면
+        됩니다.
       </Text>
       <Text size={"35px"} color={"#333"} bold={"600"}>
         목적

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const DividerLine = styled.line`
   background-color: #9b9b9b;
-  border-radius: 4px;
+  border-radius: 10px;
   height: 2px;
   width: ${(props) => props.width || "100%"};
   margin-top: 15px;

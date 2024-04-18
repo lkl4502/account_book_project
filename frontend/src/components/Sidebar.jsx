@@ -2,17 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import Divider from "./Divider";
-import Text from "./Text";
 
 const Side = styled.div`
-  padding: 3rem 40px;
+  padding: 0 40px;
   display: flex;
   background-color: #333;
   flex-direction: column;
   align-items: top;
   justify-content: top;
   width: 15%;
-  height: 100vh;
+  height: 100%;
 `;
 
 const Menu = styled.div`
@@ -37,6 +36,7 @@ const NavStyle = styled(NavLink)`
 `;
 
 const MainP = styled.p`
+  padding-top: 1.5rem;
   font-weight: 600;
   color: #f0f0f0;
   font-size: 28px;
