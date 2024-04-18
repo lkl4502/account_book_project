@@ -4,6 +4,7 @@ import Divider from "../components/Divider";
 import CustomCalendar from "../components/CustomCalendar";
 import "../App.css";
 import InputBox from "../components/InputBox";
+import CustomButton from "../components/CustomButton";
 
 function IncomeWrite() {
   const [date, setDate] = useState(new Date());
@@ -43,7 +44,7 @@ function IncomeWrite() {
       </Text>
       <CustomCalendar value={date} onChange={setDate} />
 
-      <Text border={false} margin={"50px 0px 10px 0px"}>
+      <Text border={false} margin={"30px 0px 10px 0px"}>
         거래명
       </Text>
 
@@ -54,7 +55,7 @@ function IncomeWrite() {
         placeholder={"거래명을 입력해주세요."}
       />
 
-      <Text border={false} margin={"50px 0px 10px 0px"}>
+      <Text border={false} margin={"30px 0px 10px 0px"}>
         금액
       </Text>
 
@@ -68,7 +69,7 @@ function IncomeWrite() {
         step={10}
       />
 
-      <Text border={false} margin={"50px 0px 10px 0px"}>
+      <Text border={false} margin={"30px 0px 10px 0px"}>
         메모
       </Text>
 
@@ -78,6 +79,8 @@ function IncomeWrite() {
         setValue={setMemo}
         placeholder={"메모 할 것이 있다면 입력해주세요."}
       />
+
+      <CustomButton>등록</CustomButton>
     </>
   );
 }
