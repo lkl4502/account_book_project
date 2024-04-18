@@ -1,29 +1,42 @@
 import React from "react";
 import styled from "styled-components";
 
-const P = styled.p`
-  color: ${(props) => props.color};
-  font-size: ${(props) => props.size};
-  font-weight: ${(props) => props.bold};
-  text-align: ${(props) => props.align};
+const TitleP = styled.p`
+  color: #333;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: left;
 `;
 
-function Text({ bold, size, color, align, children }) {
-  const styles = { color, size, bold, align };
+const ContentP = styled(TitleP)`
+  font-size: 16px;
+  font-weight: 300;
+  border: 1px solid #333;
+  padding: 10px 10px;
+  border-radius: 20px 20px 20px 20px;
+`;
 
-  return (
-    <>
-      <P {...styles}>{children}</P>
-    </>
-  );
+function Text({ type, children }) {
+  switch (type) {
+    case "title":
+      return (
+        <>
+          <TitleP>{children}</TitleP>
+        </>
+      );
+
+    default:
+      return (
+        <>
+          <ContentP>{children}</ContentP>
+        </>
+      );
+  }
 }
 
 Text.defaultProps = {
+  type: "default",
   children: null,
-  bold: "400",
-  color: "#9b9b9b",
-  size: "14px",
-  align: "left",
 };
 
 export default Text;
