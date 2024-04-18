@@ -4,14 +4,19 @@ import styled from "styled-components";
 const DividerLine = styled.line`
   background-color: #9b9b9b;
   border-radius: 10px;
-  height: 2px;
-  width: ${(props) => props.width || "100%"};
-  margin-top: 15px;
-  margin-bottom: 15px;
+  height: ${(props) => props.height};
+  width: ${(props) => props.width};
+  margin: ${(props) => props.margin};
 `;
 
-function Divider(props) {
-  return <DividerLine width={props.width} />;
+function Divider({ width, height, margin }) {
+  return <DividerLine width={width} height={height} margin={margin} />;
 }
+
+Divider.defaultProps = {
+  width: "100%",
+  height: "2px",
+  margin: "15px 0",
+};
 
 export default Divider;

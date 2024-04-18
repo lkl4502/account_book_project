@@ -13,6 +13,7 @@ const ContentP = styled(TitleP)`
   font-size: 16px;
   font-weight: 300;
   padding: 10px 10px;
+  width: fit-content;
   border: ${(props) => (props.border ? "1px solid #333" : "none")};
   border-radius: ${(props) => (props.border ? "20px" : "none")};
 `;
