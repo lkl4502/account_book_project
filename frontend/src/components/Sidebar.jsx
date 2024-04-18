@@ -38,7 +38,7 @@ const NavStyle = styled(NavLink)`
 
 function Sidebar() {
   const menus = [
-    { name: "HOME", path: "/home" },
+    { name: "HOME", path: "/" },
     { name: "MY PROFILE", path: "/profile" },
     { name: "INCOME WRITE", path: "/incomeWrite" },
     { name: "SPENDING WRITE", path: "/spendingWrite" },
@@ -48,8 +48,9 @@ function Sidebar() {
 
   return (
     <Side>
-      <Text bold={true} color={"#f0f0f0"} size={"28px"}>
-        Hong`s WebSite
+      <Text bold={"600"} color={"#f0f0f0"} size={"28px"} align={"center"}>
+        asdfasdfasdfasdf`s <br />
+        WebSite
       </Text>
       <Text size={"12px"}>
         거래내역의 직접 입력 방식과 연동된 계좌의 거래내역을 가져오는 방식 두
