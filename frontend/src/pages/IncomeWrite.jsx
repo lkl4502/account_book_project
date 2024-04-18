@@ -8,6 +8,23 @@ import InputBox from "../components/InputBox";
 function IncomeWrite() {
   const [date, setDate] = useState(new Date());
   const [content, setContent] = useState("");
+  const [sum, setSum] = useState();
+  const [memo, setMemo] = useState("");
+
+  const sumHandleChange = (e) => {
+    if (e > 0) {
+      if (e.length > 8) {
+        if (e > 99999999) {
+          alert("최대 99,999,999원 까지 입력 가능");
+        }
+        e = e.slice(0, 8);
+      }
+    } else {
+      e = 1;
+      alert("0원 이하의 값은 입력할 수 없습니다.");
+    }
+    setSum(e);
+  };
 
   return (
     <>
@@ -34,7 +51,32 @@ function IncomeWrite() {
         type={"text"}
         value={content}
         setValue={setContent}
-        placeholder={"테스트 한다."}
+        placeholder={"거래명을 입력해주세요."}
+      />
+
+      <Text border={false} margin={"50px 0px 10px 0px"}>
+        금액
+      </Text>
+
+      <InputBox
+        type={"number"}
+        value={sum}
+        setValue={sumHandleChange}
+        placeholder={"금액을 입력해주세요."}
+        minValue={1}
+        maxValue={99999999}
+        step={10}
+      />
+
+      <Text border={false} margin={"50px 0px 10px 0px"}>
+        메모
+      </Text>
+
+      <InputBox
+        type={"text"}
+        value={memo}
+        setValue={setMemo}
+        placeholder={"메모 할 것이 있다면 입력해주세요."}
       />
     </>
   );

@@ -18,12 +18,23 @@ const CustomInput = styled.input`
   }
 `;
 
-function InputBox({ type, value, setValue, placeholder }) {
+function InputBox({
+  type,
+  value,
+  setValue,
+  placeholder,
+  minValue,
+  maxValue,
+  step,
+}) {
   return (
     <CustomInput
       placeholder={placeholder}
       type={type}
       value={value}
+      min={minValue}
+      max={maxValue}
+      step={step}
       onChange={(e) => setValue(e.target.value)}
     ></CustomInput>
   );
