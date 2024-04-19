@@ -11,10 +11,15 @@ const Button = styled.button`
   width: fit-content;
   margin: 50px 0;
   background-color: white;
+  type: ${(props) => props.type};
 `;
 
-function CustomButton({ children }) {
-  return <Button>{children}</Button>;
+function CustomButton({ onClick, disabled, children }) {
+  return (
+    <Button onClick={onClick} disabled={disabled}>
+      {children}
+    </Button>
+  );
 }
 
 export default CustomButton;

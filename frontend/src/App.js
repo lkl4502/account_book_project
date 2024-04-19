@@ -14,7 +14,7 @@ import useAuth from "./Auth/useAuth";
 import { AuthContext } from "./context/auth-context";
 
 function App() {
-  const { token, login, logout, userId } = useAuth();
+  const { isLogin, token, userId, login, logout } = useAuth();
 
   return (
     <div className="App">
@@ -22,7 +22,7 @@ function App() {
         <Sidebar />
         <main>
           <AuthContext.Provider
-            value={{ isLoggedIn: !!token, token, userId, login, logout }}
+            value={{ isLogin, token, userId, login, logout }}
           >
             <Routes>
               <Route element={<PublicRoute />}>

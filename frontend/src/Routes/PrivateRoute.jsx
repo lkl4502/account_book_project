@@ -7,11 +7,11 @@ import { AuthContext } from "../context/auth-context";
 const PrivateRoute = () => {
   const auth = useContext(AuthContext);
 
-  if (!auth.isLoggedIn) {
+  if (!auth.isLogin) {
     alert("로그인이 필요한 기능입니다.");
   }
 
-  return auth.isLoggedIn ? <Outlet /> : <Navigate to="/" />;
+  return auth.isLogin ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoute;

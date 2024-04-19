@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth-context";
 const PublicRoute = () => {
   const auth = useContext(AuthContext);
 
-  return auth.isLoggedIn ? <Navigate to="/home" /> : <Outlet />;
+  return auth.isLogin ? <Navigate to="/home" /> : <Outlet />;
 };
 
 export default PublicRoute;

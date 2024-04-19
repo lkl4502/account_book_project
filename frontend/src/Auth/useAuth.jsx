@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const useAuth = () => {
   // 인증 상태 관리
+  const [isLogin, setIsLogin] = useState(false);
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(null);
 
@@ -12,6 +13,7 @@ const useAuth = () => {
     if (storedToken && storedUserId) {
       setToken(storedToken);
       setUserId(storedUserId);
+      setIsLogin(true);
     }
   }, []);
 
@@ -19,6 +21,7 @@ const useAuth = () => {
   const login = (token, userId) => {
     setToken(token);
     setUserId(userId);
+    setIsLogin(true);
     localStorage.setItem("authToken", token);
     localStorage.setItem("userId", userId);
   };
@@ -27,12 +30,14 @@ const useAuth = () => {
   const logout = () => {
     setToken(null);
     setUserId(null);
+    setIsLogin(false);
     localStorage.removeItem("authToken");
     localStorage.removeItem("userId");
   };
 
   // 인증 상태 반환
   return {
+    isLogin,
     token,
     userId,
     login,

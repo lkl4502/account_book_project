@@ -23,9 +23,7 @@ function Text({ type, margin, border, children }) {
     case "title":
       return (
         <>
-          <TitleP margin={margin} border={border}>
-            {children}
-          </TitleP>
+          <TitleP margin={margin}>{children}</TitleP>
         </>
       );
 
