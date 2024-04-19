@@ -55,7 +55,7 @@ const MainContentP = styled.p`
 
 function Sidebar() {
   const menus = [
-    { name: "HOME", path: "/" },
+    { name: "HOME", path: "/home" },
     { name: "MY PROFILE", path: "/profile" },
     { name: "INCOME WRITE", path: "/incomeWrite" },
     { name: "SPENDING WRITE", path: "/spendingWrite" },
@@ -66,7 +66,7 @@ function Sidebar() {
   return (
     <Side>
       <MainP>
-        Hong`s <br />
+        Anyone`s <br />
         WebSite
       </MainP>
       <MainContentP>
