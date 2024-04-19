@@ -69,7 +69,9 @@ function Login() {
           setValue={setPw}
           placeholder={"비밀번호를 입력해주세요."}
         />
-        <CustomButton onClick={handleLogin}>등록</CustomButton>
+        <CustomButton onClick={handleLogin} disabled={!email || !pw}>
+          등록
+        </CustomButton>
       </form>
     </>
   );

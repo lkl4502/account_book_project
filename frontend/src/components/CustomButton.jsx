@@ -5,13 +5,12 @@ const Button = styled.button`
   padding: 11px 20px;
   font-size: 16px;
   font-weight: 400;
-  color: #333;
   border: 1px solid gray;
   border-radius: 10px;
   width: fit-content;
   margin: 50px 0;
-  background-color: white;
-  type: ${(props) => props.type};
+  color: ${(props) => (props.disabled ? "white" : "#333")};
+  background-color: ${(props) => (props.disabled ? "gray" : "white")};
 `;
 
 function CustomButton({ onClick, disabled, children }) {
@@ -21,5 +20,9 @@ function CustomButton({ onClick, disabled, children }) {
     </Button>
   );
 }
+
+CustomButton.defaultProps = {
+  disabled: false,
+};
 
 export default CustomButton;
