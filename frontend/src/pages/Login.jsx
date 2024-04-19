@@ -3,17 +3,23 @@ import Text from "../components/Text";
 import InputBox from "../components/InputBox";
 import CustomButton from "../components/CustomButton";
 import { AuthContext } from "../context/auth-context";
+import styled from "styled-components";
+import SignUp from "./SignUp";
+import { useNavigate } from "react-router-dom";
+
+const ButtonContainer = styled.div``;
 
 function Login() {
   const auth = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     auth.login(email, pw);
+    navigate("/home");
 
     // await new Promise((r) => setTimeout(r, 1000));
 
@@ -46,33 +52,39 @@ function Login() {
     // }
   };
 
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
+
   return (
     <>
-      <form>
-        <Text type={"title"} margin={"0px 0px 10px 0px"}>
-          이메일
-        </Text>
+      <Text type={"title"} margin={"0px 0px 10px 0px"}>
+        이메일
+      </Text>
 
-        <InputBox
-          type={"email"}
-          value={email}
-          setValue={setEmail}
-          placeholder={"이메일을 입력해주세요."}
-        />
+      <InputBox
+        type={"email"}
+        value={email}
+        setValue={setEmail}
+        placeholder={"이메일을 입력해주세요."}
+      />
 
-        <Text type={"title"} margin={"20px 0px 10px 0px"}>
-          비밀번호
-        </Text>
-        <InputBox
-          type={"password"}
-          value={pw}
-          setValue={setPw}
-          placeholder={"비밀번호를 입력해주세요."}
-        />
+      <Text type={"title"} margin={"20px 0px 10px 0px"}>
+        비밀번호
+      </Text>
+      <InputBox
+        type={"password"}
+        value={pw}
+        setValue={setPw}
+        placeholder={"비밀번호를 입력해주세요."}
+      />
+      <ButtonContainer>
         <CustomButton onClick={handleLogin} disabled={!email || !pw}>
-          등록
+          로그인
         </CustomButton>
-      </form>
+
+        <CustomButton onClick={handleSignUp}>회원가입</CustomButton>
+      </ButtonContainer>
     </>
   );
 }

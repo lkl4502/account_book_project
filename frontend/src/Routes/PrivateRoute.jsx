@@ -7,9 +7,14 @@ import { AuthContext } from "../context/auth-context";
 const PrivateRoute = () => {
   const auth = useContext(AuthContext);
 
+  if (auth.isLogin === null) {
+    return null; // 로딩 중을 의미함
+  }
+
   if (!auth.isLogin) {
     alert("로그인이 필요한 기능입니다.");
   }
+  console.log(auth.isLogin);
 
   return auth.isLogin ? <Outlet /> : <Navigate to="/" />;
 };

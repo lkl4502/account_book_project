@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const useAuth = () => {
   // 인증 상태 관리
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(null);
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(null);
 
@@ -14,6 +14,8 @@ const useAuth = () => {
       setToken(storedToken);
       setUserId(storedUserId);
       setIsLogin(true);
+    } else {
+      setIsLogin(false);
     }
   }, []);
 

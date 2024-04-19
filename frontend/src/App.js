@@ -12,6 +12,7 @@ import PublicRoute from "./Routes/PublicRoute";
 import PrivateRoute from "./Routes/PrivateRoute";
 import useAuth from "./Auth/useAuth";
 import { AuthContext } from "./context/auth-context";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const { isLogin, token, userId, login, logout } = useAuth();
@@ -27,6 +28,7 @@ function App() {
             <Routes>
               <Route element={<PublicRoute />}>
                 <Route path="/" exact element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
               </Route>
 
               <Route element={<PrivateRoute />}>
