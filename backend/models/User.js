@@ -5,9 +5,14 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       email: {
         type: DataTypes.STRING(20),
-        primaryKey: true,
+        allowNull: false,
         comment: "사용자 Email",
       },
       name: {
@@ -16,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         comment: "사용자 이름",
       },
       age: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
         comment: "사용자 나이",
       },
@@ -43,9 +48,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  // User.associate = function (models) {
-  //   models.User.hasMany(models);
-  // };
+  User.associate = function (models) {
+    User.hasMany(models.UserHistory, {
+      foreginKey: "user_id",
+      sourceKey: "id",
+    });
+  };
 
   return User;
 };
