@@ -4,6 +4,8 @@ const router = require("./routers");
 
 const app = express();
 
+app.use(express.json());
+
 app.use("/api", router);
 
 // get method
