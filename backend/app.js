@@ -1,9 +1,15 @@
+require("./env");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
 
 // get method
-app.get("/", (req, res) => {
+app.get("/login", (req, res) => {
+  // 200 응답 지정, 메시지 전송
+  res.status(200).send("hello express server!!");
+});
+
+app.post("/signup", (req, res) => {
   // 200 응답 지정, 메시지 전송
   res.status(200).send("hello express server!!");
 });
