@@ -1,7 +1,18 @@
-require("./env");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
+
+const db = require("./models");
+
+//force : 서버 실행 시 마다 테이블을 재생성 할 것인지 아닌지
+db.sequelize
+  .sync()
+  .then(() => {
+    console.log("DB Connected Success");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 // get method
 app.get("/login", (req, res) => {
