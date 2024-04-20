@@ -47,4 +47,14 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+//force : 서버 실행 시 마다 테이블을 재생성 할 것인지 아닌지
+db.sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("DB Connected Success");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
 module.exports = db;
