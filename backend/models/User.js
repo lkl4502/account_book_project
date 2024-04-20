@@ -50,8 +50,8 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (models) {
     User.hasMany(models.UserHistory, {
-      foreginKey: "user_id",
-      sourceKey: "id",
+      foreignKey: "user_id",
+      onDelete: "cascade",
     });
   };
 

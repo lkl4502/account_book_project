@@ -2,7 +2,7 @@ const db = require("../models");
 User = db.User;
 
 const signUp = async (req, res) => {
-  const overlap_check = User.findOne({
+  const overlap_check = await User.findOne({
     where: { email: req.body.email },
   }).catch((err) => console.log(err));
 
