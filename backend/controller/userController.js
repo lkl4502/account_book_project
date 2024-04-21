@@ -40,4 +40,12 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { signUp, login };
+const getProfile = async (req, res) => {
+  let user = await User.findOne({
+    where: { id: req.params.id },
+  }).catch((err) => console.log(err));
+
+  return res.status(200).send(user);
+};
+
+module.exports = { signUp, login, getProfile };
