@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import Text from "../components/Text";
 import InputBox from "../components/InputBox";
 import Select from "react-select";
+import CustomButton from "../components/CustomButton";
 import styled from "styled-components";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const StyledSelect = styled(Select)`
   width: 150px;
 `;
 
 function SignUp() {
+  const navigate = useNavigate();
+
   const genders = [
     { value: "남자", label: "남자" },
     { value: "여자", label: "여자" },
@@ -36,6 +41,30 @@ function SignUp() {
       .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3")
       .replace(/(\-{1,2})$/g, "");
     setPhone(e);
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    if (!email || !pw || !name || !age || !phone || !gender) {
+      alert("항목을 모두 채워주세요.");
+      return;
+    }
+    try {
+      const res = await axios.post("http://127.0.0.1:8000/api/user/signUp", {
+        email: email,
+        password: pw,
+        name: name,
+        age: age,
+        phone: phone,
+        sex: gender.value,
+      });
+      if (res.status === 200) {
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      alert(`${err.response.data.message}`);
+    }
   };
 
   return (
@@ -107,10 +136,6 @@ function SignUp() {
         placeholder={"휴대폰 번호를 입력해주세요."}
         maxLength={13}
       />
-
-      <CustomButton onClick={handleLogin} disabled={!email || !pw}>
-        로그인
-      </CustomButton>
 
       <CustomButton onClick={handleSignUp}>회원가입</CustomButton>
     </>
