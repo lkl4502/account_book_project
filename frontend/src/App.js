@@ -15,16 +15,14 @@ import { AuthContext } from "./context/auth-context";
 import SignUp from "./pages/SignUp";
 
 function App() {
-  const { isLogin, token, userId, login, logout } = useAuth();
+  const { isLogin, userId, login, logout } = useAuth();
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Sidebar />
-        <main>
-          <AuthContext.Provider
-            value={{ isLogin, token, userId, login, logout }}
-          >
+        <AuthContext.Provider value={{ isLogin, userId, login, logout }}>
+          <Sidebar />
+          <main>
             <Routes>
               <Route element={<PublicRoute />}>
                 <Route path="/" exact element={<Login />} />
@@ -40,8 +38,8 @@ function App() {
                 <Route path="/accountConnect" element={<AccountConnect />} />
               </Route>
             </Routes>
-          </AuthContext.Provider>
-        </main>
+          </main>
+        </AuthContext.Provider>
       </BrowserRouter>
     </div>
   );

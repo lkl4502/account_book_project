@@ -4,8 +4,8 @@ import InputBox from "../components/InputBox";
 import CustomButton from "../components/CustomButton";
 import { AuthContext } from "../context/auth-context";
 import styled from "styled-components";
-import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ButtonContainer = styled.div``;
 
@@ -18,38 +18,21 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    auth.login(email, pw);
-    navigate("/home");
 
-    // await new Promise((r) => setTimeout(r, 1000));
+    try {
+      const res = await axios.post("http://127.0.0.1:8000/api/user/login", {
+        email: email,
+        password: pw,
+      });
 
-    // const response = await fetch(
-    //   "로그인 서버 주소",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: email,
-    //       password: pw,
-    //     }),
-    //   }
-    // );
-    // const result = await response.json();
-
-    // if (response.status === 200) {
-    //   setLoginCheck(false);
-    //   // Store token in local storage
-    //   sessionStorage.setItem("token", result.token);
-    //   sessionStorage.setItem("email", result.email); // 여기서 userid를 저장합니다.
-    //   sessionStorage.setItem("role", result.role); // 여기서 role를 저장합니다.
-    //   sessionStorage.setItem("storeid", result.storeId); // 여기서 role를 저장합니다.
-    //   console.log("로그인성공, 이메일주소:" + result.email);
-    //   navigate("/"); // 로그인 성공시 홈으로 이동합니다.
-    // } else {
-    //   setLoginCheck(true);
-    // }
+      if (res.status === 200) {
+        auth.login(email);
+        navigate("/home");
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      alert(`${err.response.data.message}`);
+    }
   };
 
   const handleSignUp = () => {

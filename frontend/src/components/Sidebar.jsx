@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Divider from "./Divider";
+import { AuthContext } from "../context/auth-context";
 
 const Side = styled.div`
   padding: 0 40px;
@@ -54,6 +55,19 @@ const MainContentP = styled.p`
 `;
 
 function Sidebar() {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+  const logoClick = () => {
+    console.log(auth.isLogin);
+    const path = auth.isLogin ? "/home" : "/";
+    const message = auth.isLogin
+      ? "로그인 상태이므로 메인 화면으로 이동합니다."
+      : "로그인 화면으로 이동합니다.";
+
+    alert(message);
+    navigate(path);
+  };
+
   const menus = [
     { name: "HOME", path: "/home" },
     { name: "MY PROFILE", path: "/profile" },
@@ -65,7 +79,7 @@ function Sidebar() {
 
   return (
     <Side>
-      <MainP>
+      <MainP onClick={logoClick}>
         Anyone`s <br />
         WebSite
       </MainP>
