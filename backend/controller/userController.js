@@ -8,8 +8,10 @@ const signUp = async (req, res) => {
 
   if (overlap_check) {
     console.log("email 중복");
-    return res.status(400).send("중복된 Email 입니다.");
+    return res.status(400).send({ message: "중복된 Email 입니다." });
   }
+
+  console.log(req.body);
 
   const user = await User.create({
     email: req.body.email,
@@ -20,7 +22,7 @@ const signUp = async (req, res) => {
     phone: req.body.phone,
   }).catch((err) => console.log(err));
 
-  res.status(200).send(user);
+  res.status(200).send({ data: user });
 };
 
 const login = async (req, res) => {
@@ -31,12 +33,14 @@ const login = async (req, res) => {
   if (!user)
     return res
       .status(400)
-      .send("입력하신 Email에 해당하는 계정이 존재하지 않습니다.");
+      .send({ message: "입력하신 Email에 해당하는 계정이 존재하지 않습니다." });
   else {
     if (user.password != req.body.password) {
-      return res.status(400).send("올바른 비밀번호를 입력해주세요.");
+      return res
+        .status(400)
+        .send({ message: "올바른 비밀번호를 입력해주세요." });
     }
-    return res.status(200).send("로그인 성공");
+    return res.status(200).send({ message: "로그인 성공" });
   }
 };
 
@@ -45,7 +49,7 @@ const getProfile = async (req, res) => {
     where: { id: req.params.id },
   }).catch((err) => console.log(err));
 
-  return res.status(200).send(user);
+  return res.status(200).send({ data: user });
 };
 
 module.exports = { signUp, login, getProfile };
