@@ -13,6 +13,8 @@ const registerHistory = async (req, res) => {
   res.status(200).send(history);
 };
 
+const getHistory = async (req, res) => {};
+
 module.exports = {
   registerHistory,
 };

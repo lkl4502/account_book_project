@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import Text from "../components/Text";
 import InputBox from "../components/InputBox";
 import Select from "react-select";
+import styled from "styled-components";
+
+const StyledSelect = styled(Select)`
+  width: 150px;
+`;
 
 function SignUp() {
   const genders = [
@@ -16,8 +21,26 @@ function SignUp() {
   const [gender, setGender] = useState(null);
   const [phone, setPhone] = useState("");
 
+  const ageHandleChange = (e) => {
+    if (e > 100) {
+      e = 100;
+    } else if (e < 1) {
+      e = 0;
+    }
+    setAge(e);
+  };
+
+  const phoneHandleChange = (e) => {
+    e = e
+      .replace(/[^0-9]/g, "")
+      .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3")
+      .replace(/(\-{1,2})$/g, "");
+    setPhone(e);
+  };
+
   return (
     <>
+      <style></style>
       <Text type={"title"} margin={"0px 0px 10px 0px"}>
         이메일
       </Text>
@@ -55,7 +78,10 @@ function SignUp() {
       <InputBox
         type={"number"}
         value={age}
-        setValue={setAge}
+        setValue={ageHandleChange}
+        minValue={0}
+        maxValue={100}
+        step={1}
         placeholder={"나이를 입력해주세요."}
       />
 
@@ -63,12 +89,30 @@ function SignUp() {
         성별
       </Text>
 
-      <Select
+      <StyledSelect
         options={genders}
         onChange={setGender}
         placeholder="성별 선택"
         isSearchable={false}
       />
+
+      <Text type={"title"} margin={"20px 0px 10px 0px"}>
+        휴대폰 번호
+      </Text>
+
+      <InputBox
+        type={"text"}
+        value={phone}
+        setValue={phoneHandleChange}
+        placeholder={"휴대폰 번호를 입력해주세요."}
+        maxLength={13}
+      />
+
+      <CustomButton onClick={handleLogin} disabled={!email || !pw}>
+        로그인
+      </CustomButton>
+
+      <CustomButton onClick={handleSignUp}>회원가입</CustomButton>
     </>
   );
 }

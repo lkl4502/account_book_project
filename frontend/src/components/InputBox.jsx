@@ -26,6 +26,7 @@ function InputBox({
   minValue,
   maxValue,
   step,
+  maxLength,
 }) {
   return (
     <CustomInput
@@ -35,6 +36,7 @@ function InputBox({
       min={minValue}
       max={maxValue}
       step={step}
+      maxLength={maxLength}
       onChange={(e) => setValue(e.target.value)}
     ></CustomInput>
   );
