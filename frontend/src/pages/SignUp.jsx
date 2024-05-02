@@ -69,7 +69,6 @@ function SignUp() {
 
   return (
     <>
-      <style></style>
       <Text type={"title"} margin={"0px 0px 10px 0px"}>
         이메일
       </Text>

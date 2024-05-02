@@ -46,10 +46,12 @@ const login = async (req, res) => {
 
 const getProfile = async (req, res) => {
   let user = await User.findOne({
-    where: { id: req.params.id },
+    where: { email: req.body.email },
   }).catch((err) => console.log(err));
 
-  return res.status(200).send({ data: user });
+  if (!user)
+    return res.status(400).send({ message: "유저 정보를 찾지 못했습니다." });
+  else return res.status(200).send({ data: user });
 };
 
 module.exports = { signUp, login, getProfile };
