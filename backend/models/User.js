@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         comment: "사용자 나이",
       },
-      sex: {
+      gender: {
         type: DataTypes.STRING(10),
         allowNull: false,
         comment: "사용자 성별",

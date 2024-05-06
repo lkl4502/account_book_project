@@ -69,7 +69,7 @@ function Profile() {
           성별
         </Text>
 
-        <Text margin={"0px 0px 40px 0px"}>{profile.sex}</Text>
+        <Text margin={"0px 0px 40px 0px"}>{profile.gender}</Text>
 
         <Text type={"title"} margin={"0px 0px 10px 0px"}>
           휴대폰 번호

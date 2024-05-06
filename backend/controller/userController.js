@@ -18,7 +18,7 @@ const signUp = async (req, res) => {
     password: req.body.password,
     name: req.body.name,
     age: req.body.age,
-    sex: req.body.sex,
+    gender: req.body.gender,
     phone: req.body.phone,
   }).catch((err) => console.log(err));
 

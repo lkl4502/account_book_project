@@ -39,8 +39,20 @@ function SignUp() {
     e = e
       .replace(/[^0-9]/g, "")
       .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3")
-      .replace(/(\-{1,2})$/g, "");
+      .replace(/(-{1,2})$/g, "");
     setPhone(e);
+  };
+
+  const checkEmail = () => {
+    const regex =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    return regex.test(email);
+  };
+
+  const checkPw = () => {
+    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
+
+    return regex.test(pw);
   };
 
   const handleSignUp = async (e) => {
@@ -49,6 +61,19 @@ function SignUp() {
       alert("항목을 모두 채워주세요.");
       return;
     }
+
+    if (!checkEmail()) {
+      // email 유효성 검사
+      alert("Email 형식을 지켜주세요.");
+      return;
+    }
+
+    if (!checkPw()) {
+      // 비밀번호 유호성 검사
+      alert("영문, 숫자 조합으로 8-20자리 입력해주세요.");
+      return;
+    }
+
     try {
       const res = await axios.post("http://127.0.0.1:8000/api/user/signUp", {
         email: email,
@@ -56,7 +81,7 @@ function SignUp() {
         name: name,
         age: age,
         phone: phone,
-        sex: gender.value,
+        gender: gender.value,
       });
       if (res.status === 200) {
         navigate("/");
