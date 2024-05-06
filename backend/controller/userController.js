@@ -40,7 +40,7 @@ const login = async (req, res) => {
         .status(400)
         .send({ message: "올바른 비밀번호를 입력해주세요." });
     }
-    return res.status(200).send({ message: "로그인 성공" });
+    return res.status(200).send({ data: user, message: "로그인 성공" });
   }
 };
 

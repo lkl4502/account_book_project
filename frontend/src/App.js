@@ -15,12 +15,14 @@ import { AuthContext } from "./context/auth-context";
 import SignUp from "./pages/SignUp";
 
 function App() {
-  const { isLogin, userId, login, logout } = useAuth();
+  const { isLogin, userId, userName, login, logout } = useAuth();
 
   return (
     <div className="App">
       <BrowserRouter>
-        <AuthContext.Provider value={{ isLogin, userId, login, logout }}>
+        <AuthContext.Provider
+          value={{ isLogin, userId, userName, login, logout }}
+        >
           <Sidebar />
           <main>
             <Routes>

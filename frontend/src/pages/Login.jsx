@@ -26,7 +26,7 @@ function Login() {
       });
 
       if (res.status === 200) {
-        auth.login(email);
+        auth.login(email, res.data.data.name);
         navigate("/home");
       }
     } catch (err) {

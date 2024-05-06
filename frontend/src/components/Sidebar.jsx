@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
 import Divider from "./Divider";
@@ -55,6 +55,7 @@ const MainContentP = styled.p`
 `;
 
 function Sidebar() {
+  const [logoMessage, setLogoMessage] = useState("Anyone");
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
   const logoClick = () => {
@@ -68,6 +69,14 @@ function Sidebar() {
     navigate(path);
   };
 
+  useEffect(() => {
+    if (auth.isLogin) {
+      setLogoMessage(auth.userName);
+    } else {
+      setLogoMessage("Anyone");
+    }
+  }, [auth]);
+
   const menus = [
     { name: "HOME", path: "/home" },
     { name: "MY PROFILE", path: "/profile" },
@@ -80,7 +89,7 @@ function Sidebar() {
   return (
     <Side>
       <MainP onClick={logoClick}>
-        Anyone`s <br />
+        {logoMessage}`s <br />
         WebSite
       </MainP>
       <MainContentP>
