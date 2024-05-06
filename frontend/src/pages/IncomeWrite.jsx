@@ -27,6 +27,13 @@ function IncomeWrite() {
     setSum(e);
   };
 
+  const checkInput = (e) => {};
+
+  const registerHandler = async (e) => {
+    e.preventDefault();
+    checkInput();
+  };
+
   return (
     <>
       <Text type={"title"} margin={"0px 0px 15px 0px"}>
@@ -80,7 +87,7 @@ function IncomeWrite() {
         placeholder={"메모 할 것이 있다면 입력해주세요."}
       />
 
-      <CustomButton>등록</CustomButton>
+      <CustomButton onClick={registerHandler}>등록</CustomButton>
     </>
   );
 }
