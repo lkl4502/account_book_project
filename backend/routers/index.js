@@ -1,9 +1,9 @@
 const userRouter = require("./UserRouter");
-const historyRouter = require("./UserHistoryRouter");
+const transactionRouter = require("./TransactionRouter");
 
 const router = require("express").Router();
 
 router.use(userRouter.path, userRouter.router);
-router.use(historyRouter.path, historyRouter.router);
+router.use(transactionRouter.path, transactionRouter.router);
 
 module.exports = router;

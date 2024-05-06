@@ -22,7 +22,7 @@ const signUp = async (req, res) => {
     phone: req.body.phone,
   }).catch((err) => console.log(err));
 
-  res.status(200).send({ data: user });
+  return res.status(200).send({ data: user });
 };
 
 const login = async (req, res) => {

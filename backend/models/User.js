@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   User.associate = function (models) {
-    User.hasMany(models.UserHistory, {
+    User.hasMany(models.Transaction, {
       foreignKey: "user_id",
       onDelete: "cascade",
     });
