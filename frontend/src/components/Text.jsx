@@ -16,9 +16,10 @@ const ContentP = styled(TitleP)`
   width: fit-content;
   border: ${(props) => (props.border ? "0.8px solid #333" : "none")};
   border-radius: ${(props) => (props.border ? "10px" : "none")};
+  line-height: ${(props) => props.lineHeight};
 `;
 
-function Text({ type, margin, border, children }) {
+function Text({ type, margin, border, children, lineHeight }) {
   switch (type) {
     case "title":
       return (
@@ -30,7 +31,7 @@ function Text({ type, margin, border, children }) {
     default:
       return (
         <>
-          <ContentP margin={margin} border={border}>
+          <ContentP margin={margin} border={border} lineHeight={lineHeight}>
             {children}
           </ContentP>
         </>
@@ -43,6 +44,7 @@ Text.defaultProps = {
   children: null,
   margin: "0px 0px 0px 0px",
   border: true,
+  lineHeight: "normal",
 };
 
 export default Text;
