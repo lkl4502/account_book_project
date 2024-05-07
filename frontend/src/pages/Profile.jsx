@@ -20,16 +20,14 @@ function Profile() {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    console.log(localStorage.getItem("userId"));
     auth.logout();
-    console.log(localStorage.getItem("userId"));
     navigate("/");
   };
 
   const getProfile = async () => {
     try {
       const res = await axios.post("http://127.0.0.1:8000/api/user/profile", {
-        email: localStorage.getItem("userId"),
+        email: JSON.parse(localStorage.getItem("user")).email,
       });
       if (res.status === 200) {
         setProfile(res.data.data);

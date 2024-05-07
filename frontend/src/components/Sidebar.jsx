@@ -71,7 +71,7 @@ function Sidebar() {
 
   useEffect(() => {
     if (auth.isLogin) {
-      setLogoMessage(auth.userName);
+      setLogoMessage(auth.user.name);
     } else {
       setLogoMessage("Anyone");
     }

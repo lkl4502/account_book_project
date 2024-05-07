@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Text from "../components/Text";
 import Divider from "../components/Divider";
 import CustomCalendar from "../components/CustomCalendar";
 import "../App.css";
 import InputBox from "../components/InputBox";
 import CustomButton from "../components/CustomButton";
+import axios from "axios";
+import { AuthContext } from "../context/auth-context";
 
 function IncomeWrite() {
+  const auth = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
   const [content, setContent] = useState("");
   const [sum, setSum] = useState();
@@ -43,6 +46,26 @@ function IncomeWrite() {
     e.preventDefault();
     if (!checkInput()) {
       return;
+    }
+
+    try {
+      const res = await axios.post(
+        "http://127.0.0.1:8000/api/transaction/register",
+        {
+          user_id: auth.user.id,
+          type: true,
+          sum: sum,
+          date: date,
+          category: content,
+        }
+      );
+
+      if (res.status === 200) {
+        alert("거래 내역이 추가되었습니다.");
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      alert(`${err.response.data.message}`);
     }
   };
 

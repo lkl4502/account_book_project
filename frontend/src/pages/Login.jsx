@@ -26,7 +26,7 @@ function Login() {
       });
 
       if (res.status === 200) {
-        auth.login(email, res.data.data.name);
+        auth.login(res.data.data.id, res.data.data.email, res.data.data.name);
         navigate("/home");
       }
     } catch (err) {

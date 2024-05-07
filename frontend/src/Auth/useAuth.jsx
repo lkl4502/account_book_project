@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 
+class User {
+  constructor(id, email, name) {
+    this.id = id;
+    this.email = email;
+    this.name = name;
+  }
+}
+
 const useAuth = () => {
   // 인증 상태 관리
   const [isLogin, setIsLogin] = useState(null);
-  const [userId, setUserId] = useState(null);
-  const [userName, setUserName] = useState(null);
+  const [user, setUser] = useState(null);
 
   // 초기 인증 상태 로드
   useEffect(() => {
-    const storedUserId = localStorage.getItem("userId");
-    const storedUserName = localStorage.getItem("userName");
-    if (storedUserId) {
-      setUserId(storedUserId);
-      setUserName(storedUserName);
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
       setIsLogin(true);
     } else {
       setIsLogin(false);
@@ -20,31 +25,27 @@ const useAuth = () => {
   }, []);
 
   // 로그인 함수
-  const login = (userId, userName) => {
-    setUserId(userId);
-    setUserName(userName);
+  const login = (id, email, name) => {
+    const user = new User(id, email, name);
+    setUser(user);
     setIsLogin(true);
-    localStorage.setItem("userId", userId);
-    localStorage.setItem("userName", userName);
+    localStorage.setItem("user", JSON.stringify(user));
   };
 
   // 로그아웃 함수
   const logout = () => {
-    setUserId(null);
-    setUserName(null);
+    setUser(null);
     setIsLogin(false);
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName");
+    localStorage.removeItem("user");
   };
 
   // 인증 상태 반환
   return {
     isLogin,
-    userId,
-    userName,
+    user,
     login,
     logout,
   };
 };
 
-export default useAuth;
+export { useAuth, User };

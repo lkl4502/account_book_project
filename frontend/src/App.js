@@ -10,19 +10,17 @@ import AccountConnect from "./pages/AccountConnect";
 import Login from "./pages/Login";
 import PublicRoute from "./Routes/PublicRoute";
 import PrivateRoute from "./Routes/PrivateRoute";
-import useAuth from "./Auth/useAuth";
+import { useAuth } from "./Auth/useAuth";
 import { AuthContext } from "./context/auth-context";
 import SignUp from "./pages/SignUp";
 
 function App() {
-  const { isLogin, userId, userName, login, logout } = useAuth();
+  const { isLogin, user, login, logout } = useAuth();
 
   return (
     <div className="App">
       <BrowserRouter>
-        <AuthContext.Provider
-          value={{ isLogin, userId, userName, login, logout }}
-        >
+        <AuthContext.Provider value={{ isLogin, user, login, logout }}>
           <Sidebar />
           <main>
             <Routes>
