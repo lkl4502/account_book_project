@@ -31,11 +31,12 @@ function IncomeWrite() {
   };
 
   const checkContent = () => {
+    console.log(content);
     return !!content?.trim();
   };
 
   const checkInput = () => {
-    if (checkContent) {
+    if (!checkContent()) {
       alert("거래 명을 입력해주세요");
       return false;
     }
