@@ -15,6 +15,10 @@ function WritePage({ type }) {
   const [sum, setSum] = useState();
   const [memo, setMemo] = useState("");
 
+  useEffect(() => {
+    clearInput();
+  }, [type]);
+
   const sumHandleChange = (e) => {
     if (e >= 0) {
       if (e.length > 8) {
