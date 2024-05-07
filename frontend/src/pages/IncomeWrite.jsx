@@ -27,11 +27,23 @@ function IncomeWrite() {
     setSum(e);
   };
 
-  const checkInput = (e) => {};
+  const checkContent = () => {
+    return !!content?.trim();
+  };
 
-  const registerHandler = async (e) => {
+  const checkInput = () => {
+    if (checkContent) {
+      alert("거래 명을 입력해주세요");
+      return false;
+    }
+    return true;
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
-    checkInput();
+    if (!checkInput()) {
+      return;
+    }
   };
 
   return (
@@ -87,7 +99,7 @@ function IncomeWrite() {
         placeholder={"메모 할 것이 있다면 입력해주세요."}
       />
 
-      <CustomButton onClick={registerHandler}>등록</CustomButton>
+      <CustomButton onClick={handleRegister}>등록</CustomButton>
     </>
   );
 }
