@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import moment from "moment";
 import styled from "styled-components";
@@ -103,6 +103,10 @@ const CalendarWrapper = styled.div`
 function CustomCalendar({ value, onChange }) {
   const [date, setDate] = useState(moment(value).format("YYYY년 MM월 DD일"));
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setDate(moment(value).format("YYYY년 MM월 DD일"));
+  }, [value]);
 
   const handleToggleCalendar = () => {
     setIsOpen(!isOpen);
