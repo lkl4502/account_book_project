@@ -16,7 +16,7 @@ function IncomeWrite() {
   const [memo, setMemo] = useState("");
 
   const sumHandleChange = (e) => {
-    if (e > 0) {
+    if (e >= 0) {
       if (e.length > 8) {
         if (e > 99999999) {
           alert("최대 99,999,999원 까지 입력 가능");
@@ -24,8 +24,8 @@ function IncomeWrite() {
         e = e.slice(0, 8);
       }
     } else {
-      e = 1;
-      alert("0원 이하의 값은 입력할 수 없습니다.");
+      alert("음수값은 입력이 불가능합니다.");
+      e = "";
     }
     setSum(e);
   };
