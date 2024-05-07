@@ -30,6 +30,13 @@ function IncomeWrite() {
     setSum(e);
   };
 
+  const clearInput = () => {
+    setContent("");
+    setDate(new Date());
+    setSum();
+    setMemo("");
+  };
+
   const checkContent = () => {
     console.log(content);
     return !!content?.trim();
@@ -63,6 +70,8 @@ function IncomeWrite() {
 
       if (res.status === 200) {
         alert("거래 내역이 추가되었습니다.");
+        clearInput();
+        return;
       }
     } catch (err) {
       console.log(err.response.data);
