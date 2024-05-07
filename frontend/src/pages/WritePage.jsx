@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Text from "../components/Text";
 import Divider from "../components/Divider";
 import CustomCalendar from "../components/CustomCalendar";
@@ -8,7 +8,7 @@ import CustomButton from "../components/CustomButton";
 import axios from "axios";
 import { AuthContext } from "../context/auth-context";
 
-function IncomeWrite() {
+function WritePage({ type }) {
   const auth = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
   const [content, setContent] = useState("");
@@ -61,7 +61,7 @@ function IncomeWrite() {
         "http://127.0.0.1:8000/api/transaction/register",
         {
           user_id: auth.user.id,
-          type: true,
+          type: type,
           sum: sum,
           date: date,
           category: content,
@@ -82,11 +82,11 @@ function IncomeWrite() {
   return (
     <>
       <Text type={"title"} margin={"0px 0px 15px 0px"}>
-        Income Write
+        {type ? "Income" : "Spending"} Write
       </Text>
       <Text border={false} margin={"0px 0px 20px 0px"}>
-        직접 입력하고 싶은 수입에 대해서 작성하고 등록 버튼을 통해서 등록하시면
-        됩니다.
+        직접 입력하고 싶은 {type ? "수입" : "지출"}에 대해서 작성하고 등록
+        버튼을 통해서 등록하시면 됩니다.
       </Text>
 
       <Divider margin={"0px 0px 15px 0px"} width={"75%"} />
@@ -137,4 +137,4 @@ function IncomeWrite() {
   );
 }
 
-export default IncomeWrite;
+export default WritePage;
