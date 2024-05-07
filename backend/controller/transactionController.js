@@ -1,5 +1,6 @@
+const { where } = require("sequelize");
 const db = require("../models");
-Transaction = db.Transaction;
+const Transaction = db.Transaction;
 
 const registerTransaction = async (req, res) => {
   const transaction = await Transaction.create({
@@ -17,8 +18,21 @@ const registerTransaction = async (req, res) => {
   }
 };
 
-const getHistory = async (req, res) => {};
+const getTransaction = async (req, res) => {
+  const transaction_list = await Transaction.findAll({
+    where: { user_id: req.query.id },
+  }).catch((err) => console.log(err));
+
+  if (!transaction_list) {
+    return res
+      .status(400)
+      .send({ message: "해당 기간 내의 거래 내역이 존재하지 않습니다." });
+  } else {
+    return res.status(200).send({ data: transaction_list });
+  }
+};
 
 module.exports = {
   registerTransaction,
+  getTransaction,
 };

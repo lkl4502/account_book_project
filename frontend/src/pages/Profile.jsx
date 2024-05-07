@@ -26,8 +26,10 @@ function Profile() {
 
   const getProfile = async () => {
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/user/profile", {
-        email: JSON.parse(localStorage.getItem("user")).email,
+      const res = await axios.get("http://127.0.0.1:8000/api/user/profile", {
+        params: {
+          id: JSON.parse(localStorage.getItem("user")).id,
+        },
       });
       if (res.status === 200) {
         setProfile(res.data.data);

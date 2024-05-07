@@ -29,8 +29,8 @@ function SignUp() {
   const ageHandleChange = (e) => {
     if (e > 100) {
       e = 100;
-    } else if (e < 1) {
-      e = 0;
+    } else if (e < 0) {
+      e = "";
     }
     setAge(e);
   };
