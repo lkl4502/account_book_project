@@ -33,7 +33,7 @@ function IncomeWrite() {
   const clearInput = () => {
     setContent("");
     setDate(new Date());
-    setSum();
+    setSum("");
     setMemo("");
   };
 
