@@ -20,12 +20,17 @@ const registerTransaction = async (req, res) => {
 
 const getTransaction = async (req, res) => {
   const transaction_list = await Transaction.findAll({
+    attributes: ["id", "type", "sum", "date", "category"],
     where: {
       user_id: req.query.id,
       date: {
         [Op.between]: [new Date(req.query.start), new Date(req.query.end)],
       },
     },
+    order: [
+      ["date", "asc"],
+      ["createdAt", "asc"],
+    ],
   }).catch((err) => console.log(err));
 
   if (!transaction_list) {
@@ -33,7 +38,6 @@ const getTransaction = async (req, res) => {
       .status(400)
       .send({ message: "해당 기간 내의 거래 내역이 존재하지 않습니다." });
   } else {
-    console.log(transaction_list);
     return res.status(200).send({ data: transaction_list });
   }
 };
