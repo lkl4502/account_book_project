@@ -1,4 +1,4 @@
-const { where } = require("sequelize");
+const { Op } = require("sequelize");
 const db = require("../models");
 const Transaction = db.Transaction;
 
@@ -20,7 +20,12 @@ const registerTransaction = async (req, res) => {
 
 const getTransaction = async (req, res) => {
   const transaction_list = await Transaction.findAll({
-    where: { user_id: req.query.id },
+    where: {
+      user_id: req.query.id,
+      date: {
+        [Op.between]: [new Date(req.query.start), new Date(req.query.end)],
+      },
+    },
   }).catch((err) => console.log(err));
 
   if (!transaction_list) {

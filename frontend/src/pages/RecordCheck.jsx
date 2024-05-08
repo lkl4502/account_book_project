@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Text from "../components/Text";
 import Divider from "../components/Divider";
 import styled from "styled-components";
 import CustomCalendar from "../components/CustomCalendar";
+import CustomButton from "../components/CustomButton";
 import Select from "react-select";
 
 const FormContainer = styled.div`
@@ -31,6 +32,8 @@ function RecordCheck() {
     { value: false, label: "지출" },
   ];
 
+  const handleCheck = () => {};
+
   return (
     <>
       <Text type={"title"} margin={"0px 0px 15px 0px"}>
@@ -58,6 +61,8 @@ function RecordCheck() {
           isSearchable={false}
         />
       </FormContainer>
+
+      <CustomButton onClick={handleCheck}>조회</CustomButton>
     </>
   );
 }
