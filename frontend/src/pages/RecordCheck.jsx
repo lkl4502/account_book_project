@@ -71,22 +71,31 @@ function RecordCheck() {
 
       <Divider margin={"0px 0px 15px 0px"} width={"75%"} />
 
-      <FormContainer>
-        <Text>시작 날짜</Text>
-        <Text>마감 날짜</Text>
-        <Text>유형</Text>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <FormContainer>
+          <Text>시작 날짜</Text>
+          <Text>마감 날짜</Text>
+          <Text>유형</Text>
 
-        <CustomCalendar value={startDate} onChange={setStartDate} />
-        <CustomCalendar value={endDate} onChange={setEndDate} />
-        <StyledSelect
-          options={types}
-          onChange={setType}
-          placeholder="유형 선택"
-          isSearchable={false}
-        />
-      </FormContainer>
+          <CustomCalendar value={startDate} onChange={setStartDate} />
+          <CustomCalendar value={endDate} onChange={setEndDate} />
+          <StyledSelect
+            options={types}
+            onChange={setType}
+            placeholder="유형 선택"
+            isSearchable={false}
+          />
+        </FormContainer>
 
-      <CustomButton onClick={handleCheck}>조회</CustomButton>
+        <CustomButton onClick={handleCheck} margin={"0px 0px 0px 0px"}>
+          조회
+        </CustomButton>
+      </div>
     </>
   );
 }

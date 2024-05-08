@@ -8,14 +8,14 @@ const Button = styled.button`
   border: 1px solid gray;
   border-radius: 10px;
   width: fit-content;
-  margin: 50px 30px 0 0;
+  margin: ${(props) => props.margin || "50px 30px 0 0"};
   color: ${(props) => (props.disabled ? "white" : "#333")};
   background-color: ${(props) => (props.disabled ? "gray" : "white")};
 `;
 
-function CustomButton({ onClick, disabled, children }) {
+function CustomButton({ onClick, disabled, children, margin }) {
   return (
-    <Button onClick={onClick} disabled={disabled}>
+    <Button onClick={onClick} disabled={disabled} margin={margin}>
       {children}
     </Button>
   );
