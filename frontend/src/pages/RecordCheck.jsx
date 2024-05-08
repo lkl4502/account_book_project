@@ -8,10 +8,13 @@ import Select from "react-select";
 import axios from "axios";
 
 const FormContainer = styled.div`
-  display: flex;
+  display: grid;
   width: 75%;
-  justify-content: space-around;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
   align-items: center;
+  grid-gap: 10px 0px;
 `;
 
 const StyledSelect = styled(Select)`
@@ -70,12 +73,11 @@ function RecordCheck() {
 
       <FormContainer>
         <Text>시작 날짜</Text>
-        <CustomCalendar value={startDate} onChange={setStartDate} />
-
         <Text>마감 날짜</Text>
-        <CustomCalendar value={endDate} onChange={setEndDate} />
-
         <Text>유형</Text>
+
+        <CustomCalendar value={startDate} onChange={setStartDate} />
+        <CustomCalendar value={endDate} onChange={setEndDate} />
         <StyledSelect
           options={types}
           onChange={setType}
