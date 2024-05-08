@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Text from "../components/Text";
 import Divider from "../components/Divider";
 import styled from "styled-components";
 import CustomCalendar from "../components/CustomCalendar";
 import CustomButton from "../components/CustomButton";
 import Select from "react-select";
+import axios from "axios";
 
 const FormContainer = styled.div`
   display: flex;
@@ -32,7 +33,28 @@ function RecordCheck() {
     { value: false, label: "지출" },
   ];
 
-  const handleCheck = () => {};
+  const handleCheck = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.get(
+        "http://127.0.0.1:8000/api/transaction/check",
+        {
+          params: {
+            id: JSON.parse(localStorage.getItem("user")).id,
+            start: startDate,
+            end: endDate,
+          },
+        }
+      );
+      if (res.status === 200) {
+        console.log(res.data.data);
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      alert(`${err.response.data.message}`);
+    }
+  };
 
   return (
     <>

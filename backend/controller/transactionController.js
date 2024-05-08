@@ -33,6 +33,7 @@ const getTransaction = async (req, res) => {
       .status(400)
       .send({ message: "해당 기간 내의 거래 내역이 존재하지 않습니다." });
   } else {
+    console.log(transaction_list);
     return res.status(200).send({ data: transaction_list });
   }
 };
