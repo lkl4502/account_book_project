@@ -10,7 +10,7 @@ import { AuthContext } from "../context/auth-context";
 
 function WritePage({ type }) {
   const auth = useContext(AuthContext);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(new Date().setHours(0, 0, 0, 0)));
   const [content, setContent] = useState("");
   const [sum, setSum] = useState();
   const [memo, setMemo] = useState("");
@@ -36,13 +36,12 @@ function WritePage({ type }) {
 
   const clearInput = () => {
     setContent("");
-    setDate(new Date());
+    setDate(new Date(new Date().setHours(0, 0, 0, 0)));
     setSum("");
     setMemo("");
   };
 
   const checkContent = () => {
-    console.log(content);
     return !!content?.trim();
   };
 
