@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const db = require("../models");
+const { type } = require("os");
 const Transaction = db.Transaction;
 
 const registerTransaction = async (req, res) => {
@@ -26,6 +27,9 @@ const getTransaction = async (req, res) => {
       date: {
         [Op.between]: [new Date(req.query.start), new Date(req.query.end)],
       },
+      ...(req.query.type != "null" && {
+        type: JSON.parse(req.query.type) === true,
+      }),
     },
     order: [
       ["date", "asc"],

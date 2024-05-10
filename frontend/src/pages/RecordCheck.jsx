@@ -28,10 +28,10 @@ function RecordCheck() {
   const [endDate, setEndDate] = useState(
     new Date(new Date().setHours(0, 0, 0, 0))
   );
-  const [type, setType] = useState(null);
+  const [type, setType] = useState("null");
 
   const types = [
-    { value: null, label: "소득/지출" },
+    { value: "null", label: "소득/지출" },
     { value: true, label: "소득" },
     { value: false, label: "지출" },
   ];
@@ -47,6 +47,7 @@ function RecordCheck() {
             id: JSON.parse(localStorage.getItem("user")).id,
             start: startDate,
             end: endDate,
+            type: type.value,
           },
         }
       );
