@@ -37,28 +37,31 @@ function RecordCheck() {
     { value: false, label: "지출" },
   ];
 
-  const columns = useMemo(() => [
-    {
-      accessor: "id",
-      Header: "id",
-    },
-    {
-      accessor: "content",
-      Header: "거래명",
-    },
-    {
-      accessor: "type",
-      Header: "거래 유형",
-    },
-    {
-      accessor: "sum",
-      Header: "금액",
-    },
-    {
-      accessor: "date",
-      Header: "거래 일자",
-    },
-  ]);
+  const columns = useMemo(
+    () => [
+      {
+        accessor: "id",
+        Header: "id",
+      },
+      {
+        accessor: "content",
+        Header: "거래명",
+      },
+      {
+        accessor: "type",
+        Header: "거래 유형",
+      },
+      {
+        accessor: "sum",
+        Header: "금액",
+      },
+      {
+        accessor: "date",
+        Header: "거래 일자",
+      },
+    ],
+    []
+  );
 
   const data = useMemo(
     () => [
