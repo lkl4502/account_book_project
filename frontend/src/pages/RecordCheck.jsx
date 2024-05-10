@@ -29,13 +29,15 @@ function RecordCheck() {
   const [endDate, setEndDate] = useState(
     new Date(new Date().setHours(0, 0, 0, 0))
   );
-  const [type, setType] = useState("null");
 
   const types = [
     { value: "null", label: "소득/지출" },
     { value: true, label: "소득" },
     { value: false, label: "지출" },
   ];
+
+  const [type, setType] = useState(types[0]);
+  const [transactionList, setTransactionList] = useState();
 
   const columns = useMemo(
     () => [
@@ -63,18 +65,9 @@ function RecordCheck() {
     []
   );
 
-  const data = useMemo(
-    () => [
-      {
-        id: "3",
-        content: "test",
-        type: "지출",
-        sum: "30000",
-        date: "2021-08-03 01:15:49",
-      },
-    ],
-    []
-  );
+  const data = useMemo(() => {
+    return transactionList;
+  }, [transactionList]);
 
   const handleCheck = async (e) => {
     e.preventDefault();
@@ -92,6 +85,7 @@ function RecordCheck() {
         }
       );
       if (res.status === 200) {
+        setTransactionList(res.data.data);
         console.log(res.data.data);
       }
     } catch (err) {
@@ -128,7 +122,7 @@ function RecordCheck() {
           <StyledSelect
             options={types}
             onChange={setType}
-            placeholder="유형 선택"
+            defaultValue={type}
             isSearchable={false}
           />
         </FormContainer>
@@ -138,7 +132,7 @@ function RecordCheck() {
         </CustomButton>
       </div>
 
-      <CustomTable columns={columns} data={data} />
+      <CustomTable columns={columns} data={data || []} />
     </>
   );
 }

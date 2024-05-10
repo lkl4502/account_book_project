@@ -1,6 +1,5 @@
 const { Op } = require("sequelize");
 const db = require("../models");
-const { type } = require("os");
 const Transaction = db.Transaction;
 
 const registerTransaction = async (req, res) => {
@@ -20,6 +19,7 @@ const registerTransaction = async (req, res) => {
 };
 
 const getTransaction = async (req, res) => {
+  console.log(req.query.type);
   const transaction_list = await Transaction.findAll({
     attributes: ["id", "type", "sum", "date", "category"],
     where: {
