@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Text from "../components/Text";
 import Divider from "../components/Divider";
 import styled from "styled-components";
@@ -6,6 +6,7 @@ import CustomCalendar from "../components/CustomCalendar";
 import CustomButton from "../components/CustomButton";
 import Select from "react-select";
 import axios from "axios";
+import CustomTable from "../components/CustomTable";
 
 const FormContainer = styled.div`
   display: grid;
@@ -35,6 +36,42 @@ function RecordCheck() {
     { value: true, label: "소득" },
     { value: false, label: "지출" },
   ];
+
+  const columns = useMemo(() => [
+    {
+      accessor: "id",
+      Header: "id",
+    },
+    {
+      accessor: "content",
+      Header: "거래명",
+    },
+    {
+      accessor: "type",
+      Header: "거래 유형",
+    },
+    {
+      accessor: "sum",
+      Header: "금액",
+    },
+    {
+      accessor: "date",
+      Header: "거래 일자",
+    },
+  ]);
+
+  const data = useMemo(
+    () => [
+      {
+        id: "3",
+        content: "test",
+        type: "지출",
+        sum: "30000",
+        date: "2021-08-03 01:15:49",
+      },
+    ],
+    []
+  );
 
   const handleCheck = async (e) => {
     e.preventDefault();
@@ -97,6 +134,8 @@ function RecordCheck() {
           조회
         </CustomButton>
       </div>
+
+      <CustomTable columns={columns} data={data} />
     </>
   );
 }
