@@ -3,6 +3,7 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getPaginationRowModel,
 } from "@tanstack/react-table";
 import styled from "styled-components";
 
@@ -47,6 +48,7 @@ function CustomTable({ columns, data }) {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   return (
@@ -80,42 +82,36 @@ function CustomTable({ columns, data }) {
           ))}
         </tbody>
       </table>
+      <div
+        style={{
+          width: "75%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          margin: "10px 0 0 0",
+        }}
+      >
+        <button
+          disabled={!table.getCanPreviousPage()}
+          onClick={() => table.previousPage()}
+        >
+          {"<"}
+        </button>
+
+        <div style={{ margin: "0 10px" }}>
+          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          {table.getPageCount()}
+        </div>
+
+        <button
+          disabled={!table.getCanNextPage()}
+          onClick={() => table.nextPage()}
+        >
+          {">"}
+        </button>
+      </div>
     </Styles>
   );
-  // const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-  //   useTable({
-  //     columns,
-  //     data,
-  //   });
-  // return (
-  //   <Styles>
-  //     <table {...getTableProps()}>
-  //       <thead>
-  //         {headerGroups.map((headerGroup) => (
-  //           <tr {...headerGroup.getHeaderGroupProps()}>
-  //             {headerGroup.headers.map((column) => (
-  //               <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-  //             ))}
-  //           </tr>
-  //         ))}
-  //       </thead>
-  //       <tbody {...getTableBodyProps()}>
-  //         {rows.map((row, i) => {
-  //           prepareRow(row);
-  //           return (
-  //             <tr {...row.getRowProps()}>
-  //               {row.cells.map((cell) => {
-  //                 return (
-  //                   <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-  //                 );
-  //               })}
-  //             </tr>
-  //           );
-  //         })}
-  //       </tbody>
-  //     </table>
-  //   </Styles>
-  // );
 }
 
 export default CustomTable;
