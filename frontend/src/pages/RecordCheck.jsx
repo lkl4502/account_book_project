@@ -42,37 +42,16 @@ function RecordCheck() {
 
   const columnHelper = createColumnHelper();
   const columns = [
-    columnHelper.accessor("id", { header: "이름" }),
+    columnHelper.accessor("id", { header: "id", size: 30 }),
     columnHelper.accessor("content", { header: "거래명" }),
-    columnHelper.accessor("type", { header: "거래 유형" }),
-    columnHelper.accessor("sum", { header: "금액" }),
-    columnHelper.accessor("date", { header: "거래 일자" }),
+    columnHelper.accessor("type", { header: "거래 유형", size: 60 }),
+    columnHelper.accessor("sum", { header: "금액", size: 100 }),
+    columnHelper.accessor("date", {
+      header: "거래 일자",
+      cell: ({ renderValue }) =>
+        renderValue().slice(0, renderValue().indexOf(" ")),
+    }),
   ];
-  // const columns = useMemo(
-  //   () => [
-  //     {
-  //       accessor: "id",
-  //       Header: "id",
-  //     },
-  //     {
-  //       accessor: "content",
-  //       Header: "거래명",
-  //     },
-  //     {
-  //       accessor: "type",
-  //       Header: "거래 유형",
-  //     },
-  //     {
-  //       accessor: "sum",
-  //       Header: "금액",
-  //     },
-  //     {
-  //       accessor: "date",
-  //       Header: "거래 일자",
-  //     },
-  //   ],
-  //   []
-  // );
 
   const data = useMemo(() => {
     return transactionList;
