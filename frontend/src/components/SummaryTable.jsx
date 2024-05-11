@@ -8,7 +8,6 @@ import {
 import styled from "styled-components";
 
 const SummaryStyles = styled.div`
-  padding: 1rem;
   table {
     width: 75%;
     table-layout: fixed;

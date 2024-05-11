@@ -8,8 +8,6 @@ import {
 import styled from "styled-components";
 
 const Styles = styled.div`
-  padding: 1rem;
-
   table {
     width: 75%;
     margin-top: 30px;
