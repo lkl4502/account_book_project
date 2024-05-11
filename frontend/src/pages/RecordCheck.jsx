@@ -44,7 +44,20 @@ function RecordCheck() {
   const columns = [
     columnHelper.accessor("id", { header: "id", size: 30 }),
     columnHelper.accessor("content", { header: "거래명" }),
-    columnHelper.accessor("type", { header: "거래 유형", size: 60 }),
+    columnHelper.accessor("type", {
+      header: "거래 유형",
+      size: 60,
+      cell: ({ renderValue }) => (
+        <div
+          style={{
+            color: renderValue() ? "blue" : "red",
+            fontWeight: 600,
+          }}
+        >
+          {renderValue() ? "소득" : "지출"}
+        </div>
+      ),
+    }),
     columnHelper.accessor("sum", {
       header: "금액",
       size: 100,
