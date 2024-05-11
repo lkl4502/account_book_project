@@ -7,9 +7,8 @@ import {
 } from "@tanstack/react-table";
 import styled from "styled-components";
 
-const Styles = styled.div`
+const SummaryStyles = styled.div`
   padding: 1rem;
-
   table {
     width: 75%;
     margin-top: 30px;
@@ -32,7 +31,7 @@ const Styles = styled.div`
   }
 `;
 
-function CustomTable({ columns, data }) {
+function SummaryTable({ columns, data }) {
   const table = useReactTable({
     data,
     columns,
@@ -41,7 +40,7 @@ function CustomTable({ columns, data }) {
   });
 
   return (
-    <Styles>
+    <SummaryStyles>
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -71,36 +70,8 @@ function CustomTable({ columns, data }) {
           ))}
         </tbody>
       </table>
-      <div
-        style={{
-          width: "75%",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          margin: "20px 0 0 0",
-        }}
-      >
-        <button
-          disabled={!table.getCanPreviousPage()}
-          onClick={() => table.previousPage()}
-        >
-          {"<"}
-        </button>
-
-        <div style={{ margin: "0 10px" }}>
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}
-        </div>
-
-        <button
-          disabled={!table.getCanNextPage()}
-          onClick={() => table.nextPage()}
-        >
-          {">"}
-        </button>
-      </div>
-    </Styles>
+    </SummaryStyles>
   );
 }
 
-export default CustomTable;
+export default SummaryTable;

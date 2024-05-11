@@ -8,6 +8,7 @@ import Select from "react-select";
 import axios from "axios";
 import CustomTable from "../components/CustomTable";
 import { createColumnHelper } from "@tanstack/react-table";
+import SummaryTable from "../components/SummaryTable";
 
 const FormContainer = styled.div`
   display: grid;
@@ -74,9 +75,22 @@ function RecordCheck() {
     }),
   ];
 
+  const summary_columns = [
+    columnHelper.accessor("total_count", { header: "총 거래 수" }),
+    columnHelper.accessor("total_spend_count", { header: "총 지출 수" }),
+    columnHelper.accessor("total_income_count", { header: "총 소득 수" }),
+    columnHelper.accessor("total_spend_sum", { header: "총 지출 금액" }),
+    columnHelper.accessor("total_income_sum", { header: "총 소득 금액" }),
+    columnHelper.accessor("total_sum", { header: "총 합계 금액" }),
+  ];
+
   const data = useMemo(() => {
     return transactionList;
   }, [transactionList]);
+
+  const summary_data = useMemo(() => {
+    return data;
+  }, [data]);
 
   const handleCheck = async (e) => {
     e.preventDefault();
@@ -140,6 +154,8 @@ function RecordCheck() {
           조회
         </CustomButton>
       </div>
+
+      <SummaryTable columns={summary_columns} data={summary_data || []} />
 
       <CustomTable columns={columns} data={data || []} />
     </>
