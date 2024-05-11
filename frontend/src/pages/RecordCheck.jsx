@@ -45,7 +45,14 @@ function RecordCheck() {
     columnHelper.accessor("id", { header: "id", size: 30 }),
     columnHelper.accessor("content", { header: "거래명" }),
     columnHelper.accessor("type", { header: "거래 유형", size: 60 }),
-    columnHelper.accessor("sum", { header: "금액", size: 100 }),
+    columnHelper.accessor("sum", {
+      header: "금액",
+      size: 100,
+      cell: ({ renderValue }) =>
+        renderValue()
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+    }),
     columnHelper.accessor("date", {
       header: "거래 일자",
       cell: ({ renderValue }) =>
