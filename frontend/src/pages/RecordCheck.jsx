@@ -76,9 +76,15 @@ function RecordCheck() {
   ];
 
   const summary_columns = [
-    columnHelper.accessor("total_count", { header: "총 거래 수" }),
-    columnHelper.accessor("total_spend_count", { header: "총 지출 수" }),
-    columnHelper.accessor("total_income_count", { header: "총 소득 수" }),
+    columnHelper.accessor("total_count", { header: "총 거래 수", size: 100 }),
+    columnHelper.accessor("total_spend_count", {
+      header: "총 지출 수",
+      size: 100,
+    }),
+    columnHelper.accessor("total_income_count", {
+      header: "총 소득 수",
+      size: 100,
+    }),
     columnHelper.accessor("total_spend_sum", { header: "총 지출 금액" }),
     columnHelper.accessor("total_income_sum", { header: "총 소득 금액" }),
     columnHelper.accessor("total_sum", { header: "총 합계 금액" }),
@@ -89,7 +95,31 @@ function RecordCheck() {
   }, [transactionList]);
 
   const summary_data = useMemo(() => {
-    return data;
+    if (!data) return;
+    const res = data.reduce(
+      (previousValue, currentValue) => {
+        previousValue["total_count"]++; // 총 거래 수
+
+        // 거래 유형 수, 금액
+        if (currentValue.type === true) {
+          previousValue["total_income_count"]++; // 소득
+          previousValue["total_income_sum"] += currentValue.sum;
+        } else {
+          previousValue["total_spend_count"]++; // 지출
+          previousValue["total_spend_sum"] += currentValue.sum;
+        }
+        return previousValue;
+      },
+      {
+        total_count: 0,
+        total_spend_count: 0,
+        total_income_count: 0,
+        total_spend_sum: 0,
+        total_income_sum: 0,
+      }
+    );
+    res["total_sum"] = res["total_income_sum"] - res["total_spend_sum"];
+    return [res];
   }, [data]);
 
   const handleCheck = async (e) => {
@@ -109,7 +139,6 @@ function RecordCheck() {
       );
       if (res.status === 200) {
         setTransactionList(res.data.data);
-        console.log(res.data.data);
       }
     } catch (err) {
       console.log(err.response.data);

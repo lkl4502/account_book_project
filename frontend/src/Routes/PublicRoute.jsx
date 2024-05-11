@@ -6,7 +6,6 @@ import { AuthContext } from "../context/auth-context";
 // 로그인 유저 접근 불가
 const PublicRoute = () => {
   const auth = useContext(AuthContext);
-  console.log(`public : ${auth.isLogin}`);
   return auth.isLogin ? <Navigate to="/home" /> : <Outlet />;
 };
 

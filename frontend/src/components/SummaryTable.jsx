@@ -11,6 +11,7 @@ const SummaryStyles = styled.div`
   padding: 1rem;
   table {
     width: 75%;
+    table-layout: fixed;
     margin-top: 30px;
     border-spacing: 0;
     border: 1px solid lightgray;
