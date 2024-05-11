@@ -43,7 +43,7 @@ function RecordCheck() {
   const columnHelper = createColumnHelper();
   const columns = [
     columnHelper.accessor("id", { header: "id", size: 30 }),
-    columnHelper.accessor("content", { header: "거래명" }),
+    columnHelper.accessor("category", { header: "거래명" }),
     columnHelper.accessor("type", {
       header: "거래 유형",
       size: 60,
@@ -61,7 +61,8 @@ function RecordCheck() {
     columnHelper.accessor("sum", {
       header: "금액",
       size: 100,
-      cell: ({ renderValue }) =>
+      cell: ({ renderValue, row }) =>
+        (row.original.type ? "+ " : "- ") +
         renderValue()
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
