@@ -41,6 +41,10 @@ function RecordCheck() {
   const [type, setType] = useState(types[0]);
   const [transactionList, setTransactionList] = useState();
 
+  const insertComma = (value) => {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   const columnHelper = createColumnHelper();
   const columns = [
     columnHelper.accessor("id", { header: "id", size: 30 }),
@@ -48,46 +52,89 @@ function RecordCheck() {
     columnHelper.accessor("type", {
       header: "거래 유형",
       size: 60,
-      cell: ({ renderValue }) => (
+      cell: (props) => (
         <div
           style={{
-            color: renderValue() ? "blue" : "red",
+            color: props.getValue() ? "blue" : "red",
             fontWeight: 600,
           }}
         >
-          {renderValue() ? "소득" : "지출"}
+          {props.getValue() ? "소득" : "지출"}
         </div>
       ),
     }),
     columnHelper.accessor("sum", {
       header: "금액",
       size: 100,
-      cell: ({ renderValue, row }) =>
-        (row.original.type ? "+ " : "- ") +
-        renderValue()
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+      cell: (props) => {
+        return (
+          (props.row.original.type ? "+ " : "- ") +
+          insertComma(props.getValue())
+        );
+      },
     }),
     columnHelper.accessor("date", {
       header: "거래 일자",
-      cell: ({ renderValue }) =>
-        renderValue().slice(0, renderValue().indexOf(" ")),
+      cell: (props) => props.getValue().slice(0, props.getValue().indexOf(" ")),
     }),
   ];
 
   const summary_columns = [
-    columnHelper.accessor("total_count", { header: "총 거래 수", size: 100 }),
+    columnHelper.accessor("total_count", {
+      header: "총 거래 수",
+      size: 100,
+      cell: (props) => <div>{props.getValue()}개</div>,
+    }),
     columnHelper.accessor("total_spend_count", {
       header: "총 지출 수",
       size: 100,
+      cell: (props) => (
+        <div
+          style={{
+            color: "red",
+          }}
+        >
+          {props.getValue()}개
+        </div>
+      ),
     }),
     columnHelper.accessor("total_income_count", {
       header: "총 소득 수",
       size: 100,
+      cell: (props) => (
+        <div
+          style={{
+            color: "blue",
+          }}
+        >
+          {props.getValue()}개
+        </div>
+      ),
     }),
-    columnHelper.accessor("total_spend_sum", { header: "총 지출 금액" }),
-    columnHelper.accessor("total_income_sum", { header: "총 소득 금액" }),
-    columnHelper.accessor("total_sum", { header: "총 합계 금액" }),
+    columnHelper.accessor("total_spend_sum", {
+      header: "총 지출 금액",
+      cell: (props) => (
+        <div style={{ color: "red" }}>- {insertComma(props.getValue())}</div>
+      ),
+    }),
+    columnHelper.accessor("total_income_sum", {
+      header: "총 소득 금액",
+      cell: (props) => (
+        <div style={{ color: "blue" }}>+ {insertComma(props.getValue())}</div>
+      ),
+    }),
+    columnHelper.accessor("total_sum", {
+      header: "총 합계 금액",
+      cell: (props) => {
+        const flag = props.getValue() >= 0;
+        return (
+          <div style={{ color: flag ? "blue" : "red" }}>
+            {flag ? "+ " : ""}
+            {insertComma(props.getValue())}
+          </div>
+        );
+      },
+    }),
   ];
 
   const data = useMemo(() => {
