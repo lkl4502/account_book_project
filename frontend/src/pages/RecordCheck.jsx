@@ -48,7 +48,22 @@ function RecordCheck() {
   const columnHelper = createColumnHelper();
   const columns = [
     columnHelper.accessor("id", { header: "id", size: 30 }),
-    columnHelper.accessor("category", { header: "거래명" }),
+    columnHelper.accessor("category", {
+      header: "거래명",
+      cell: (props) => {
+        const style = {
+          whiteSpace: "nowrap",
+          textOverflow: "ellipsis",
+          overflow: "hidden",
+        };
+
+        return (
+          <div style={style} title={props.getValue()}>
+            {props.getValue()}
+          </div>
+        );
+      },
+    }),
     columnHelper.accessor("type", {
       header: "거래 유형",
       size: 60,
@@ -79,6 +94,19 @@ function RecordCheck() {
     }),
     columnHelper.accessor("memo", {
       header: "메모",
+      cell: (props) => {
+        const style = {
+          whiteSpace: "nowrap",
+          textOverflow: "ellipsis",
+          overflow: "hidden",
+        };
+
+        return (
+          <div style={style} title={props.getValue()}>
+            {props.getValue()}
+          </div>
+        );
+      },
     }),
   ];
 
