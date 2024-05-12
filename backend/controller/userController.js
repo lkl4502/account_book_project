@@ -1,4 +1,5 @@
 const db = require("../models");
+const axios = require("axios");
 User = db.User;
 
 const signUp = async (req, res) => {
@@ -54,10 +55,30 @@ const getProfile = async (req, res) => {
   else return res.status(200).send({ data: user });
 };
 
-const connectAccount = async (req, res) => {
-  console.log("/authResult");
+const getToken = async (req, res) => {
   console.log(req.query);
-  return res.status(200).send({ data: req.query.code });
+  try {
+    const axios_res = await axios.post(
+      "https://testapi.openbanking.or.kr/oauth/2.0/token",
+      {
+        code: req.query.code,
+        client_id: req.query.client_id,
+        client_secret: req.query.client_secret,
+        redirect_uri: "http://localhost:3000/authResult",
+        grant_type: "authorization_code",
+      },
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        },
+      }
+    );
+
+    console.log(axios_res.status);
+    console.log(axios_res.data);
+  } catch (error) {
+    console.log(err.response.data);
+  }
 };
 
-module.exports = { signUp, login, getProfile, connectAccount };
+module.exports = { signUp, login, getProfile, getToken };

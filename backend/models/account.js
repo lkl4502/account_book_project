@@ -10,15 +10,30 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      bank: {
-        type: DataTypes.STRING(20),
+      token_type: {
+        type: DataTypes.STRING(255),
         allowNull: false,
-        comment: "계좌 은행",
+        comment: "token_type",
       },
-      account_number: {
-        type: DataTypes.STRING(50),
+      access_token: {
+        type: DataTypes.STRING(255),
         allowNull: false,
-        comment: "계좌 번호",
+        comment: "at",
+      },
+      refresh_token: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+        comment: "rt",
+      },
+      user_seq_no: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+        comment: "user_seq_no",
+      },
+      scope: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+        comment: "access scope",
       },
     },
     {

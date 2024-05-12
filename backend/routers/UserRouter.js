@@ -6,6 +6,6 @@ const path = "/user";
 router.post("/signUp", userController.signUp);
 router.post("/login", userController.login);
 router.get("/profile", userController.getProfile);
-router.get("/authResult", userController.connectAccount);
+router.get("/token", userController.getToken);
 
 module.exports = { router, path };

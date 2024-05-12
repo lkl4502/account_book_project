@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Text from "../components/Text";
 import CustomButton from "../components/CustomButton";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Divider from "../components/Divider";
 import styled from "styled-components";
 
@@ -17,10 +17,13 @@ const Wrapper = styled.div`
 
 function AccountConnect() {
   const client_id = "8ce0d21a-47fc-4714-b083-80327501ab96";
+  const client_secret = "92530d2c-7bcb-4bec-bd6a-4c257d0ca2e3";
   const authorize_url = `https://testapi.openbanking.or.kr/oauth/2.0/authorize?response_type=code&client_id=${client_id}&redirect_uri=http://localhost:3000/authResult&scope=login%20inquiry%20transfer&state=12345678901234567890123456789012&auth_type=0`;
 
   const { state } = useLocation();
   const code = state?.code;
+
+  const navigate = useNavigate();
 
   const handleOpenPopup = (e) => {
     e.preventDefault();
@@ -30,8 +33,26 @@ function AccountConnect() {
 
   const handleToken = async (e) => {
     e.preventDefault();
-
     console.log(code);
+
+    // redirect_uri : '
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/api/user/token", {
+        params: {
+          code: code,
+          client_id: client_id,
+          client_secret: client_secret,
+        },
+      });
+
+      if (res.status === 200) {
+        alert("계좌 등록 완료");
+        navigate("/home");
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      alert(`${err.response.data.message}`);
+    }
   };
 
   return (
