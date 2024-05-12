@@ -54,4 +54,6 @@ const getProfile = async (req, res) => {
   else return res.status(200).send({ data: user });
 };
 
-module.exports = { signUp, login, getProfile };
+const connectAccount = async (req, res) => {};
+
+module.exports = { signUp, login, getProfile, connectAccount };

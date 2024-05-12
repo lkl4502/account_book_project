@@ -53,6 +53,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "user_id",
       onDelete: "cascade",
     });
+    User.hasMany(models.Account, {
+      foreignKey: "user_id",
+      onDelete: "cascade",
+    });
   };
 
   return User;
