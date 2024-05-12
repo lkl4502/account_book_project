@@ -54,6 +54,10 @@ const getProfile = async (req, res) => {
   else return res.status(200).send({ data: user });
 };
 
-const connectAccount = async (req, res) => {};
+const connectAccount = async (req, res) => {
+  console.log("/authResult");
+  console.log(req.query);
+  return res.status(200).send({ data: req.query.code });
+};
 
 module.exports = { signUp, login, getProfile, connectAccount };
