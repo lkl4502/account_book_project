@@ -12,6 +12,7 @@ import PrivateRoute from "./Routes/PrivateRoute";
 import SignUp from "./pages/SignUp";
 import { useAuth } from "./Auth/useAuth";
 import { AuthContext } from "./context/auth-context";
+import AuthResult from "./pages/AuthResult";
 
 function App() {
   const { isLogin, user, login, logout } = useAuth();
@@ -41,6 +42,7 @@ function App() {
                 />
                 <Route path="/recordCheck" element={<RecordCheck />} />
                 <Route path="/accountConnect" element={<AccountConnect />} />
+                <Route path="/authResult" element={<AuthResult />} />
               </Route>
             </Routes>
           </main>

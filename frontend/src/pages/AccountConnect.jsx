@@ -1,43 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Text from "../components/Text";
 import CustomButton from "../components/CustomButton";
 import axios from "axios";
 
 function AccountConnect() {
-  const handleConnectAccount = async (e) => {
+  const client_id = "8ce0d21a-47fc-4714-b083-80327501ab96";
+  const authorize_url = `https://testapi.openbanking.or.kr/oauth/2.0/authorize?response_type=code&client_id=${client_id}&redirect_uri=http://localhost:3000/authResult&scope=login%20inquiry%20transfer&state=12345678901234567890123456789012&auth_type=0`;
+
+  const handleOpenPopup = (e) => {
     e.preventDefault();
 
-    const new_window = window.open("", "_blank");
-    const client_id = "8ce0d21a-47fc-4714-b083-80327501ab96";
-    const authorize_url = `https://testapi.openbanking.or.kr/oauth/2.0/authorize?response_type=code&client_id=${client_id}&redirect_uri=http://127.0.0.1:3000/authResult&scope=login%20inquiry%20transfer&state=12345678901234567890123456789012&auth_type=0`;
-    new_window.location.href = authorize_url;
-    // try {
-    //   const res = await axios.get(
-    //     "https://testapi.openbanking.or.kr/oauth/2.0/authorize",
-    //     {
-    //       params: {
-    //         response_type: "code",
-    //         client_id: "8ce0d21a-47fc-4714-b083-80327501ab96",
-    //         redirect_uri: "http://127.0.0.1:8000/api/user/authResult",
-    //         scope: "login inquiry transfer",
-    //         state: 12345678901234567890123456789012,
-    //         auth: 0,
-    //       },
-    //     }
-    //   );
-
-    //   if (res.status === 200) {
-    //     console.log(res.data);
-    //   }
-    // } catch (err) {
-    //   console.log(err.response.data);
-    //   alert(`${err.response.data.message}`);
-    // }
+    document.location.href = authorize_url;
   };
 
   return (
     <>
-      <CustomButton onClick={handleConnectAccount}>계좌 연결</CustomButton>
+      <CustomButton onClick={handleOpenPopup}>계좌 연결</CustomButton>
       <Text size={"16px"} color={"#333"} bold={"300"}>
         프로젝트의 주제로 정한 개인재무관리 서비스는 서비스를 사용하는 사용자의
         지출 및 수입 내역을 수집하여 한 눈에 확인할 수 있도록 하여 사용자로
