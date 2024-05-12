@@ -172,6 +172,11 @@ function RecordCheck() {
   const handleCheck = async (e) => {
     e.preventDefault();
 
+    if (startDate > endDate) {
+      alert("시작 날짜가 마감 날짜보다 이후일 수 없습니다.");
+      return;
+    }
+
     try {
       const res = await axios.get(
         "http://127.0.0.1:8000/api/transaction/check",
