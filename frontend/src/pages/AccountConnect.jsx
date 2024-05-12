@@ -35,13 +35,13 @@ function AccountConnect() {
     e.preventDefault();
     console.log(code);
 
-    // redirect_uri : '
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/user/token", {
+      const res = await axios.get("http://127.0.0.1:8000/api/account/token", {
         params: {
           code: code,
           client_id: client_id,
           client_secret: client_secret,
+          user_id: JSON.parse(localStorage.getItem("user")).id,
         },
       });
 

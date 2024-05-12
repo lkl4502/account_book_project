@@ -45,4 +45,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return Account;
 };
-// - 비밀번호
