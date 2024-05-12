@@ -21,16 +21,13 @@ const getToken = async (req, res) => {
       }
     );
 
-    console.log(axios_res.status);
-    console.log(axios_res.data);
-
     if (axios_res.status === 200) {
       const account = await Account.create({
-        token_type: axios.data.token_type,
-        access_token: axios.data.access_token,
-        refresh_token: axios.data.refresh_token,
-        user_seq_no: axios.data.user_seq_no,
-        scope: axios.data.scope,
+        token_type: axios_res.data.token_type,
+        access_token: axios_res.data.access_token,
+        refresh_token: axios_res.data.refresh_token,
+        user_seq_no: axios_res.data.user_seq_no,
+        scope: axios_res.data.scope,
         user_id: req.query.user_id,
       }).catch((err) => console.log(err));
 
@@ -42,7 +39,7 @@ const getToken = async (req, res) => {
       return res.status(200).send({ message: "계좌 정보 생성 후 연결 성공" });
     }
   } catch (error) {
-    console.log(err.response.data);
+    console.log(error);
     return res.status(400).send({ message: "토근 발급에 실패하였습니다." });
   }
 };

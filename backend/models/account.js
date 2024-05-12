@@ -16,12 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         comment: "token_type",
       },
       access_token: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.STRING(1000),
         allowNull: false,
         comment: "at",
       },
       refresh_token: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.STRING(1000),
         allowNull: false,
         comment: "rt",
       },

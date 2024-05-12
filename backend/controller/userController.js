@@ -48,6 +48,11 @@ const login = async (req, res) => {
 const getProfile = async (req, res) => {
   let user = await User.findOne({
     where: { id: req.query.id },
+    include: [
+      {
+        model: Account,
+      },
+    ],
   }).catch((err) => console.log(err));
 
   if (!user)

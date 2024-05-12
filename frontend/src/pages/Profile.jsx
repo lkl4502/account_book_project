@@ -32,6 +32,7 @@ function Profile() {
         },
       });
       if (res.status === 200) {
+        console.log(res.data.data);
         setProfile(res.data.data);
       }
     } catch (err) {
@@ -76,6 +77,16 @@ function Profile() {
         </Text>
 
         <Text margin={"0px 0px 40px 0px"}>{profile.phone}</Text>
+
+        <Text type={"title"} margin={"0px 0px 10px 0px"}>
+          연결 계좌
+        </Text>
+
+        <Text margin={"0px 0px 40px 0px"}>
+          {!!profile?.Accounts?.length
+            ? profile.Accounts.length + "개 연결됨."
+            : "연결된 계좌 없음"}
+        </Text>
       </ProfileContainer>
 
       <CustomButton onClick={handleLogout}>로그아웃</CustomButton>
