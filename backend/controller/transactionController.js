@@ -9,6 +9,7 @@ const registerTransaction = async (req, res) => {
     sum: req.body.sum,
     date: req.body.date,
     category: req.body.category,
+    memo: req.body.memo,
   }).catch((err) => console.log(err));
 
   if (!transaction) {
@@ -21,7 +22,7 @@ const registerTransaction = async (req, res) => {
 const getTransaction = async (req, res) => {
   console.log(req.query.type);
   const transaction_list = await Transaction.findAll({
-    attributes: ["id", "type", "sum", "date", "category"],
+    attributes: ["id", "type", "sum", "date", "category", "memo"],
     where: {
       user_id: req.query.id,
       date: {

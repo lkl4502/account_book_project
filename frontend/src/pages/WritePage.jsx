@@ -68,6 +68,7 @@ function WritePage({ type }) {
           sum: sum,
           date: date,
           category: content,
+          memo: memo,
         }
       );
 
