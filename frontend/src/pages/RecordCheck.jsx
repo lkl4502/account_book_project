@@ -77,6 +77,9 @@ function RecordCheck() {
       header: "거래 일자",
       cell: (props) => props.getValue().slice(0, props.getValue().indexOf(" ")),
     }),
+    columnHelper.accessor("memo", {
+      header: "메모",
+    }),
   ];
 
   const summary_columns = [

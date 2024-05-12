@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       email: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(50),
         allowNull: false,
         comment: "사용자 Email",
       },
       name: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING(20),
         allowNull: false,
         comment: "사용자 이름",
       },
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         comment: "사용자 휴대폰 번호",
       },
       password: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(100),
         allowNull: false,
         comment: "사용자 비밀번호",
       },

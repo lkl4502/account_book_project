@@ -50,7 +50,7 @@ function SignUp() {
   };
 
   const checkPw = () => {
-    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
+    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
 
     return regex.test(pw);
   };

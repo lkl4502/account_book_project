@@ -26,9 +26,14 @@ module.exports = (sequelize, DataTypes) => {
         comment: "일시",
       },
       category: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(100),
         allowNull: false,
         comment: "분야",
+      },
+      memo: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+        comment: "메모",
       },
     },
     {

@@ -108,6 +108,7 @@ function WritePage({ type }) {
         value={content}
         setValue={setContent}
         placeholder={"거래명을 입력해주세요."}
+        maxLength={20}
       />
 
       <Text border={false} margin={"30px 0px 10px 0px"}>
@@ -132,7 +133,8 @@ function WritePage({ type }) {
         type={"text"}
         value={memo}
         setValue={setMemo}
-        placeholder={"메모 할 것이 있다면 입력해주세요."}
+        placeholder={"간단한 메모 할 것이 있다면 입력해주세요."}
+        maxLength={40}
       />
 
       <CustomButton onClick={handleRegister}>등록</CustomButton>
