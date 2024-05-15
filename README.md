@@ -30,6 +30,7 @@
     - `yarn install`
   - MySQL(Ver 8.1.0) 설치 및 web_project 데이터베이스 추가
     - MySQL(Ver 8.1.0) 설치
+    - `mysql -u root -p` -> 비밀번호 입력
     - `CREATE DATABASE web_project;`
   - backend 최상위 폴더에서 .env 파일 생성
     - `DB_PASSWORD=mysql 비밀번호`
