@@ -22,7 +22,8 @@
 
 # Usage
 
-- **Server**
+- **Back-end**
+
   - node v20.7.0
   - npm 또는 yarn 설치 후 진행
     - `npm install`
@@ -32,6 +33,15 @@
     - `CREATE DATABASE web_project;`
   - backend 최상위 폴더에서 .env 파일 생성
     - `DB_PASSWORD=mysql 비밀번호`
+  - 실행
+    - `npm start`
+    - `yarn start`
+
+- **Front-end**
+  - node v20.7.0
+  - npm 또는 yarn 설치 후 진행
+    - `npm install`
+    - `yarn install`
   - 실행
     - `npm start`
     - `yarn start`
