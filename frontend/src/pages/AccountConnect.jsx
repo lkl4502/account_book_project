@@ -25,15 +25,38 @@ function AccountConnect() {
 
   const navigate = useNavigate();
 
-  const handleOpenPopup = (e) => {
+  const handleOpenPopup = async (e) => {
     e.preventDefault();
+    let flag = false;
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/api/account/", {
+        params: {
+          user_id: JSON.parse(localStorage.getItem("user")).id,
+        },
+      });
 
-    document.location.href = authorize_url;
+      if (res.status === 200) {
+        if (!!res.data.data) {
+          alert("이미 연결된 계좌가 존재합니다.");
+          flag = true;
+        } else {
+          flag = false;
+        }
+      } else {
+        flag = true;
+        alert("계좌 정보 조회에 실패하였습니다.");
+      }
+    } catch (err) {
+      console.log(err.response.data);
+      alert(`${err.response.data.message}`);
+    }
+    if (!flag) {
+      document.location.href = authorize_url;
+    }
   };
 
   const handleToken = async (e) => {
     e.preventDefault();
-    console.log(code);
 
     try {
       const res = await axios.get("http://127.0.0.1:8000/api/account/token", {

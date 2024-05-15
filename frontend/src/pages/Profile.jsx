@@ -36,7 +36,7 @@ function Profile() {
         setProfile(res.data.data);
       }
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err);
       alert(`${err.response.data.message}`);
     }
   };
@@ -83,9 +83,7 @@ function Profile() {
         </Text>
 
         <Text margin={"0px 0px 40px 0px"}>
-          {!!profile?.Accounts?.length
-            ? profile.Accounts.length + "개 연결됨."
-            : "연결된 계좌 없음"}
+          {!!profile?.Account ? "1개 연결됨." : "연결된 계좌 없음"}
         </Text>
       </ProfileContainer>
 

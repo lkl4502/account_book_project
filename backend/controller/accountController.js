@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const db = require("../models");
 const axios = require("axios");
 Account = db.Account;
@@ -44,4 +45,23 @@ const getToken = async (req, res) => {
   }
 };
 
-module.exports = { getToken };
+const getAccount = async (req, res) => {
+  const account = await Account.findOne({
+    where: {
+      user_id: req.query.user_id,
+    },
+  }).catch((err) => {
+    console.log(err);
+    return res.status(400).send({ message: "계좌 조회 실패" });
+  });
+
+  if (!account) {
+    return res
+      .status(200)
+      .send({ message: "연결된 계좌가 존재하지 않습니다.", data: null });
+  } else {
+    return res.status(200).send({ data: account });
+  }
+};
+
+module.exports = { getToken, getAccount };
