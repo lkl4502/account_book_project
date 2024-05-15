@@ -250,7 +250,7 @@ function RecordCheck() {
   return (
     <>
       <Text type={"title"} margin={"0px 0px 15px 0px"}>
-        거래 내역 확인
+        Record Check
       </Text>
       <Text border={false} margin={"0px 0px 20px 0px"} lineHeight={"1.6"}>
         원하는 기간 내의 거래내역을 확인할 수 있습니다. <br />

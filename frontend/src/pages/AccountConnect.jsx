@@ -57,6 +57,15 @@ function AccountConnect() {
 
   return (
     <>
+      <Text type={"title"} margin={"0px 0px 15px 0px"}>
+        Account Connect
+      </Text>
+      <Text border={false} margin={"0px 0px 20px 0px"} lineHeight={"1.6"}>
+        계정에 자신의 계좌를 연결할 수 있습니다. <br />
+      </Text>
+
+      <Divider margin={"0px 0px 15px 0px"} width={"75%"} />
+
       <Wrapper>
         <CustomButton onClick={handleOpenPopup} margin={"0px 30px 0px 0px"}>
           사용자 인증
@@ -68,7 +77,6 @@ function AccountConnect() {
         </Text>
       </Wrapper>
 
-      <Divider width={"75%"} />
       <Wrapper>
         <CustomButton
           onClick={handleToken}
