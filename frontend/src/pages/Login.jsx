@@ -62,7 +62,10 @@ function Login() {
         placeholder={"비밀번호를 입력해주세요."}
       />
       <ButtonContainer>
-        <CustomButton onClick={handleLogin} disabled={!email || !pw}>
+        <CustomButton
+          onClick={handleLogin}
+          disabled={!email || !(pw.length > 7)}
+        >
           로그인
         </CustomButton>
 

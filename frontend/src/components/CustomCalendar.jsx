@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Calendar from "react-calendar";
 import moment from "moment";
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import selectArrow from "../assets/date_arrow.svg";
 
 const CalendarContainer = styled.div`
   position: relative;
+  width: fit-content;
 `;
 
 const DropdownButton = styled.button`
@@ -101,12 +102,26 @@ const CalendarWrapper = styled.div`
 `;
 
 function CustomCalendar({ value, onChange }) {
+  const calendarRef = useRef(null);
   const [date, setDate] = useState(moment(value).format("YYYY년 MM월 DD일"));
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     setDate(moment(value).format("YYYY년 MM월 DD일"));
   }, [value]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleToggleCalendar = () => {
     setIsOpen(!isOpen);
@@ -119,7 +134,7 @@ function CustomCalendar({ value, onChange }) {
   };
 
   return (
-    <CalendarContainer>
+    <CalendarContainer ref={calendarRef}>
       <DropdownButton onClick={handleToggleCalendar}>{date}</DropdownButton>
       <CalendarWrapper isOpen={isOpen}>
         <Calendar
