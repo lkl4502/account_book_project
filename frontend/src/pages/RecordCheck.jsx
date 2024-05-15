@@ -47,9 +47,16 @@ function RecordCheck() {
 
   const columnHelper = createColumnHelper();
   const columns = [
-    columnHelper.accessor("id", { header: "id", size: 30 }),
+    columnHelper.accessor("id", {
+      header: "id",
+      size: 30,
+      enableSorting: true,
+      sortingFn: "auto",
+    }),
     columnHelper.accessor("category", {
       header: "거래명",
+      enableSorting: true,
+      sortingFn: "auto",
       cell: (props) => {
         const style = {
           whiteSpace: "nowrap",
@@ -67,6 +74,8 @@ function RecordCheck() {
     columnHelper.accessor("type", {
       header: "거래 유형",
       size: 60,
+      enableSorting: true,
+      sortingFn: "auto",
       cell: (props) => (
         <div
           style={{
@@ -81,6 +90,8 @@ function RecordCheck() {
     columnHelper.accessor("sum", {
       header: "금액",
       size: 100,
+      enableSorting: true,
+      sortingFn: "auto",
       cell: (props) => {
         return (
           (props.row.original.type ? "+ " : "- ") +
@@ -90,10 +101,13 @@ function RecordCheck() {
     }),
     columnHelper.accessor("date", {
       header: "거래 일자",
+      enableSorting: true,
+      sortingFn: "auto",
       cell: (props) => props.getValue().slice(0, props.getValue().indexOf(" ")),
     }),
     columnHelper.accessor("memo", {
       header: "메모",
+      enableSorting: false,
       cell: (props) => {
         const style = {
           whiteSpace: "nowrap",

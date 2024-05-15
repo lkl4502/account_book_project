@@ -4,7 +4,9 @@ import {
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
+  getSortedRowModel,
 } from "@tanstack/react-table";
+import { FaSortUp, FaSortDown, FaSort } from "react-icons/fa";
 import styled from "styled-components";
 
 const Styles = styled.div`
@@ -37,6 +39,7 @@ function CustomTable({ columns, data }) {
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
@@ -46,13 +49,29 @@ function CustomTable({ columns, data }) {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} style={{ width: header.getSize() }}>
+                <th
+                  key={header.id}
+                  style={{ width: header.getSize(), verticalAlign: "middle" }}
+                  onClick={header.column.getToggleSortingHandler()}
+                >
                   {header.isPlaceholder
                     ? null
                     : flexRender(
                         header.column.columnDef.header,
                         header.getContext()
                       )}
+                  <span style={{ verticalAlign: "middle" }}>
+                    {
+                      {
+                        asc: <FaSortUp />,
+                        desc: <FaSortDown />,
+                      }[header.column.getIsSorted()]
+                    }
+                    {header.column.getCanSort() &&
+                    !header.column.getIsSorted() ? (
+                      <FaSort />
+                    ) : null}
+                  </span>
                 </th>
               ))}
             </tr>
