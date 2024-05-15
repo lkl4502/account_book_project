@@ -235,6 +235,10 @@ function RecordCheck() {
         }
       );
       if (res.status === 200) {
+        if (res.data.data.length === 0) {
+          console.log(res.data.data);
+          alert("요청하신 기간 내의 거래내역이 존재하지 않습니다.");
+        }
         setTransactionList(res.data.data);
       }
     } catch (err) {

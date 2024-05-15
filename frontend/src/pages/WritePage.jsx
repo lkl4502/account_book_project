@@ -20,6 +20,10 @@ function WritePage({ type }) {
   }, [type]);
 
   const sumHandleChange = (e) => {
+    if (e.toString().match(/[^0-9]/g)) {
+      alert("숫자 이외의 입력은 할 수 없습니다.");
+      e = e.toString().replace(/[^0-9]/g, "");
+    }
     if (e >= 0) {
       if (e.length > 8) {
         if (e > 99999999) {
@@ -27,9 +31,6 @@ function WritePage({ type }) {
         }
         e = e.slice(0, 8);
       }
-    } else {
-      alert("음수값은 입력이 불가능합니다.");
-      e = "";
     }
     setSum(e);
   };
@@ -48,6 +49,12 @@ function WritePage({ type }) {
   const checkInput = () => {
     if (!checkContent()) {
       alert("거래 명을 입력해주세요");
+      return false;
+    }
+
+    if (sum <= 0) {
+      alert("금액은 0보다 커야합니다.");
+      setSum("");
       return false;
     }
     return true;
@@ -89,7 +96,7 @@ function WritePage({ type }) {
         {type ? "Income" : "Spending"} Write
       </Text>
       <Text border={false} margin={"0px 0px 20px 0px"}>
-        직접 입력하고 싶은 {type ? "수입" : "지출"}에 대해서 작성하고 등록
+        직접 입력하고 싶은 {type ? "소득" : "지출"}에 대해서 작성하고 등록
         버튼을 통해서 등록하시면 됩니다.
       </Text>
 
@@ -117,7 +124,7 @@ function WritePage({ type }) {
       </Text>
 
       <InputBox
-        type={"number"}
+        type={"text"}
         value={sum}
         setValue={sumHandleChange}
         placeholder={"금액을 입력해주세요."}
