@@ -21,6 +21,7 @@ function Profile() {
   const handleLogout = (e) => {
     e.preventDefault();
     auth.logout();
+    alert("로그아웃");
     navigate("/");
   };
 
