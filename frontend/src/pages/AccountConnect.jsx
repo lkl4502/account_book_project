@@ -59,7 +59,7 @@ function AccountConnect() {
     <>
       <Wrapper>
         <CustomButton onClick={handleOpenPopup} margin={"0px 30px 0px 0px"}>
-          계좌 연결
+          사용자 인증
         </CustomButton>
         <Text>
           {code === undefined
@@ -75,7 +75,7 @@ function AccountConnect() {
           disabled={!code}
           margin={"0px 30px 0px 0px"}
         >
-          토큰 발급
+          계좌 연동
         </CustomButton>
       </Wrapper>
     </>
