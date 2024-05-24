@@ -8,6 +8,40 @@
 
 - **20191627 오홍석**
 
+# Feature
+
+<details>
+<summary>회원 가입</summary>
+
+  <details>
+  <summary>이메일 중복 방지 및 유효성 검사</summary>
+
+![emailDuplicate](README-STATIC/SignUp/emailDuplicate.png)
+
+  </details>
+
+  <details>
+  <summary>비밀번호 유효성 검사</summary>
+
+![emailDuplicate](README-STATIC/SignUp/emailDuplicate.png)
+
+  </details>
+- 비밀번호 유효성 검사
+- 입력 정보 공란 확인
+- 회원가입 완료시 User Account 생성
+- 로그인 화면으로 이동
+
+</details>
+
+<details>
+<summary>
+
+### 시스템 구조
+
+</summary>
+
+</details>
+
 # Stacks
 
 **Front-End**  
@@ -25,6 +59,7 @@
 # Using Module
 
 ### Front-End
+
 - tanstack/react-table
 - axios
 - moment
@@ -32,12 +67,12 @@
 - styled-components
 
 ### Back-End
+
 - axios
 - cors
 - dotenv
 - sequelize
 - mysql2
-
 
 # Usage
 
@@ -65,27 +100,3 @@
   - 실행
     - `npm start`
     - `yarn start`
-
-
-# Feature
-
-<details open>
-<summary>
-  
-### 회원가입
-
-</summary>
-
-- 
-
-</details>
-
-
-<details open>
-<summary>
-
-### 시스템 구조
-
-</summary>
-
-</details>
