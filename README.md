@@ -2,6 +2,8 @@
 
 개인재무관리 서비스는 서비스를 사용하는 사용자의 지출 및 수입 내역을 수집하여 한 눈에 확인할 수 있도록 하여 사용자로 하여금 올바른 소비 계획을 세울 수 있도록 돕는 서비스이다.
 
+[시연 동영상 2024.05.16 버전](https://youtu.be/rP9JDkVVZMk)
+
 # Team
 
 - **20191627 오홍석**
@@ -19,6 +21,23 @@
 ![https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black](https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white)
 ![https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
+
+# Using Module
+
+### Front-End
+- tanstack/react-table
+- axios
+- moment
+- react-calendar
+- styled-components
+
+### Back-End
+- axios
+- cors
+- dotenv
+- sequelize
+- mysql2
+
 
 # Usage
 
@@ -46,3 +65,27 @@
   - 실행
     - `npm start`
     - `yarn start`
+
+
+# Feature
+
+<details open>
+<summary>
+  
+### 회원가입
+
+</summary>
+
+- 
+
+</details>
+
+
+<details open>
+<summary>
+
+### 시스템 구조
+
+</summary>
+
+</details>
